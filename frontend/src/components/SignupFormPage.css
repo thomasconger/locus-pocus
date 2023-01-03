@@ -1,0 +1,6 @@
+.signup-form {
+  width: clamp(100px, 50%, 750px);
+  margin-left: auto;
+  margin-right: auto;
+  display: grid;
+}
