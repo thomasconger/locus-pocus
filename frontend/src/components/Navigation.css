@@ -10,6 +10,14 @@
 .nav-logo a {
   display: inline-block;
   padding: 0 10px;
+  text-decoration: none;
+  font-family: sans-serif;
+  font-weight: 400;
+  font-size: 22px;
+}
+
+.nav-logo a:visited {
+  color: inherit;
 }
 
 

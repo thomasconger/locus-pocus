@@ -18,10 +18,10 @@ function Navigation() {
     sessionLinks = (
       <>
         <li>
-          <NavLink to="/login">Log In</NavLink>
+          <NavLink to="/login"><button>Log In</button></NavLink>
         </li>
         <li>
-          <NavLink to="/signup">Sign Up</NavLink>
+          <NavLink to="/signup"><button>Sign Up</button></NavLink>
         </li>
       </>
     );
@@ -30,7 +30,7 @@ function Navigation() {
   return (
     <nav className="navbar">
       <div className="nav-logo">
-        <NavLink  exact to="/">Locus-Pocus</NavLink>
+        <NavLink  exact to="/">Locus Pocus</NavLink>
       </div>
       <ul className="navigation">
 
