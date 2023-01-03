@@ -31,7 +31,8 @@
   display: inline-block;
   font-size: inherit;
   color: inherit;
-  font-weight: 200;
+  font-weight: inherit;
+  font-family: inherit;
   text-decoration: underline;
 }
 
