@@ -38,7 +38,7 @@ module LocusPocus
 
     config.middleware.use ActionDispatch::Cookies
     config.middleware.use ActionDispatch::Session::CookieStore,
-      key: '_auth_me_session',
+      key: '_locus_pocus_session',
       same_site: :lax,
       secure: Rails.env.production?
   end
