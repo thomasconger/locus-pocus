@@ -81,6 +81,4 @@ test:
 #
 production:
   <<: *default
-  database: locus_pocus_production
-  username: locus_pocus
-  password: <%= ENV["LOCUS_POCUS_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>

@@ -10,9 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_28_182135) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_04_233156) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "activities", force: :cascade do |t|
+    t.string "prompt", null: false
+    t.string "type", null: false
+    t.json "body", null: false
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_activities_on_user_id"
+  end
+
+  create_table "responses", force: :cascade do |t|
+    t.string "type", null: false
+    t.json "body", null: false
+    t.string "session_token", null: false
+    t.bigint "user_id", null: false
+    t.bigint "activity_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["activity_id"], name: "index_responses_on_activity_id"
+    t.index ["user_id"], name: "index_responses_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
@@ -26,4 +48,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_28_182135) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "activities", "users"
+  add_foreign_key "responses", "activities"
+  add_foreign_key "responses", "users"
 end
