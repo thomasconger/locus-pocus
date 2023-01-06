@@ -21,7 +21,7 @@
 .activity-index-headers {
   display: grid;
   grid-template-columns: 1fr 5fr 2fr 2fr;
-  color: steelblue;
+  color: gray;
   font-weight: 600;
   align-content: center;
 }
@@ -78,16 +78,18 @@
   width: 250px;
   margin-top: 25px;
   margin-left: 10%;
+  margin-bottom: 25px;
   display: grid;
   grid-template-rows: 100px auto;
   grid-template-columns: 50% 50%;
+  font-family: sans-serif;
 }
 
 .live-learn-more {
   grid-column-start: 1;
   grid-column-end: 3;
   text-align: center;
-  color: steelblue;
+  color: gray;
   border-top: 1px solid gray;
   padding: 10px;
 }

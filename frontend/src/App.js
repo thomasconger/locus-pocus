@@ -5,12 +5,21 @@ import LoginFormPage from './components/LoginFormPage';
 import SignupFormPage from './components/SignupFormPage';
 import Dashboard from './components/Dashboard';
 import Navigation from './components/Navigation';
+import ModalService from './components/ModalService';
+import TestModal from './components/TestModal';
+import ModalRoot from './components/ModalRoot';
+
 
 
 function App() {
 
+  const addModal = () => {
+    ModalService.open(TestModal);
+  };
+
   return (
     <>
+      <ModalRoot />
       <Navigation />
       <Switch>
         <Route path="/login">

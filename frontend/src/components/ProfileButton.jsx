@@ -41,6 +41,11 @@ function ProfileButton({ user }) {
           <li>
             <button onClick={logout}>Log Out</button>
           </li>
+          <li>
+            <a href="./dashboard">
+              <button>Dashboard</button>
+            </a>
+          </li>
         </ul>
       )}
     </>

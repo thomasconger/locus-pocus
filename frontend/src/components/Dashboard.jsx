@@ -4,12 +4,21 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from "react-router-dom";
 import * as sessionActions from '../store/session';
 import './Dashboard.css'
+import Modal from "./Modal";
+import ModalRoot from "./ModalRoot";
+import ModalService from "./ModalService";
+import TestModal from "./TestModal";
+
 
 function Dashboard() {
   const sessionUser = useSelector(state => state.session.user);
+  const [show, setShow] = useState(false);
 
   if (!sessionUser) return <Redirect to="/login" />;
 
+  const addModal = () => {
+    ModalService.open(TestModal);
+  };
 
   return (
     <>
@@ -21,7 +30,7 @@ function Dashboard() {
         <p className="live-learn-more">Learn More</p>
       </div>
       <div className="toolbar-flexbox">
-        <button>Activity</button>
+        <button onClick={ addModal } className="btn btn-primary m-4">Open modal</button>
         <button>Folder</button>
         <button>Upload</button>
       </div>
@@ -30,32 +39,31 @@ function Dashboard() {
         <div className="activity-index-headers">
           <div className="activity-index-header-right-icon">
             <h3 >Order </h3>
-            <i class="fa-regular fa-square"></i>
+            <i className="fa-regular fa-square"></i>
           </div>
           <h3>Name</h3>
           <h3 className="activity-index-header-centered" >Last Modified</h3>
           <h3 className="activity-index-header-centered" >Responses</h3>
         </div>
         <div className="activity-index-item">
-          <p className="activity-index-detail-order">1 <i class="fa-regular fa-square"></i></p>
+          <p className="activity-index-detail-order">1 <i className="fa-regular fa-square"></i></p>
           <p>First Activity</p>
           <p className="activity-index-detail-centered">01/01/23</p>
           <p className="activity-index-detail-centered">2</p>
         </div>
         <div className="activity-index-item">
-          <p className="activity-index-detail-order">2 <i class="fa-regular fa-square"></i></p>
+          <p className="activity-index-detail-order">2 <i className="fa-regular fa-square"></i></p>
           <p>Second Activity</p>
           <p className="activity-index-detail-centered">01/01/23</p>
           <p className="activity-index-detail-centered">202</p>
         </div>
         <div className="activity-index-item">
-          <p className="activity-index-detail-order">3 <i class="fa-regular fa-square"></i></p>
+          <p className="activity-index-detail-order">3 <i className="fa-regular fa-square"></i></p>
           <p>Third Activity</p>
           <p className="activity-index-detail-centered">01/01/23</p>
           <p className="activity-index-detail-centered">154</p>
         </div>
       </div>
-
     </>
   );
 }
