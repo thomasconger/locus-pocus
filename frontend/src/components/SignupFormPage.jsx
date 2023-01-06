@@ -13,7 +13,7 @@ function SignupFormPage() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState([]);
 
-  if (sessionUser) return <Redirect to="/" />;
+  if (sessionUser) return <Redirect to="/dashboard" />;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -36,7 +36,7 @@ function SignupFormPage() {
     return setErrors(['Confirm Password field must be the same as the Password field']);
   };
 
-  
+
 
   return (
     <div className="signup-wrapper">

@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import LoginFormPage from './components/LoginFormPage';
 import SignupFormPage from './components/SignupFormPage';
+import Dashboard from './components/Dashboard';
 import Navigation from './components/Navigation';
 
 
@@ -17,6 +18,9 @@ function App() {
         </Route>
         <Route path="/signup">
           <SignupFormPage />
+        </Route>
+        <Route path="/dashboard">
+          <Dashboard />
         </Route>
         <Route path="*">
           <Redirect to="/" />
