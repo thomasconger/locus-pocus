@@ -7,18 +7,27 @@ import './Dashboard.css'
 import Modal from "./Modal";
 import ModalRoot from "./ModalRoot";
 import ModalService from "./ModalService";
-import TestModal from "./TestModal";
+import ActivityModal from "./ActivityModal";
+import ActivityIndexItem from "./ActivityIndexItem";
+import { fetchActivities } from "../store/activities";
 
 
 function Dashboard() {
+  const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
+  const activities = useSelector(state => state.activities)
   const [show, setShow] = useState(false);
 
-  if (!sessionUser) return <Redirect to="/login" />;
 
   const addModal = () => {
-    ModalService.open(TestModal);
+    ModalService.open(ActivityModal);
   };
+
+  useEffect(()=>{
+    dispatch(fetchActivities())
+  },[])
+
+  if (!sessionUser) return <Redirect to="/login" />;
 
   return (
     <>
@@ -45,24 +54,19 @@ function Dashboard() {
           <h3 className="activity-index-header-centered" >Last Modified</h3>
           <h3 className="activity-index-header-centered" >Responses</h3>
         </div>
-        <div className="activity-index-item">
-          <p className="activity-index-detail-order">1 <i className="fa-regular fa-square"></i></p>
-          <p>First Activity</p>
-          <p className="activity-index-detail-centered">01/01/23</p>
-          <p className="activity-index-detail-centered">2</p>
-        </div>
-        <div className="activity-index-item">
-          <p className="activity-index-detail-order">2 <i className="fa-regular fa-square"></i></p>
-          <p>Second Activity</p>
-          <p className="activity-index-detail-centered">01/01/23</p>
-          <p className="activity-index-detail-centered">202</p>
-        </div>
-        <div className="activity-index-item">
-          <p className="activity-index-detail-order">3 <i className="fa-regular fa-square"></i></p>
-          <p>Third Activity</p>
-          <p className="activity-index-detail-centered">01/01/23</p>
-          <p className="activity-index-detail-centered">154</p>
-        </div>
+
+        {Object.values(activities).map((activity) => {
+          return(
+            <ActivityIndexItem
+              key={activity.id}
+              order={activity.order}
+              prompt={activity.prompt}
+              modified={activity.updatedAt}
+              responses={activity.responses} />
+          )
+        })}
+
+
       </div>
     </>
   );

@@ -5,19 +5,48 @@
   width: 100vw;
   height: 100vh;
   background-color: rgba(255, 255, 255, 1);
+  font-family: sans-serif;
 }
 
-
-.test-modal {
-  display: flex;
-  flex-direction: column;
-  margin-left: auto;
-  margin-right: auto;
+.modal-header h3{
+  font-weight: 600;
+  font-size: 30px;
 }
+
 
 .modal-content {
   width: clamp(500px, 80%, 1200px);
   margin-top: 20%;
   margin-left: auto;
   margin-right: auto;
+}
+
+.modal-body {
+  margin-top: 50px;
+}
+
+
+.activity-modal {
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+.activity-buttons {
+  margin-top: 20px;
+}
+
+.prompt {
+  margin-bottom: 25px;
+  padding: 15px;
+  font-size: 22px;
+}
+
+.option {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+  font-size: 18px;
 }

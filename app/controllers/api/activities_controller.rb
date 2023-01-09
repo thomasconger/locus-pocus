@@ -11,6 +11,8 @@ class Api::ActivitiesController < ApplicationController
   end
 
   def index
+    @activities = Activity.all
+    render :index
   end
 
   def show
@@ -25,6 +27,6 @@ class Api::ActivitiesController < ApplicationController
   private
 
   def activity_params
-    params.require(:activity).permit(:prompt, :type, :body, :presenter_id)
+    params.require(:activity).permit(:prompt, :style, :options, :presenter_id)
   end
 end

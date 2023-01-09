@@ -1,0 +1,37 @@
+.hero {
+  font-family: sans-serif;
+  width: clamp(500px, 90%, 1800px);
+  margin-left: auto;
+  margin-right: auto;
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+}
+
+.hero h1 {
+  font-size: 50px;
+  font-weight: 600;
+  line-height: 1.25;
+  margin-top: 20%;
+}
+
+.hero p {
+  font-size: 22px;
+  font-weight: 200;
+  line-height: 1.25;
+  margin-top: 5%;
+}
+
+.hero button {
+  margin-top: 5%;
+}
+
+.hero-img-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero img {
+  width: clamp(200px, 60%, 1000px);
+  margin-top: 10%;
+}

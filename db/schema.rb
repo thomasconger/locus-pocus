@@ -16,8 +16,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_04_233156) do
 
   create_table "activities", force: :cascade do |t|
     t.string "prompt", null: false
-    t.string "type", null: false
-    t.json "body", null: false
+    t.string "style", null: false
+    t.json "options", null: false
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
