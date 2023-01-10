@@ -1,0 +1,19 @@
+.activity-show-wrapper {
+  width: 750px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 100px;
+  font-family: sans-serif;
+}
+
+.activity-show-wrapper h1 {
+  font-size: 28px;
+  margin-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+}
+
+.activity-show-edit {
+  display: flex;
+  flex-direction: column;
+}

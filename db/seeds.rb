@@ -24,22 +24,22 @@ ApplicationRecord.transaction do
     })
   end
 
-  #creating activites
+  puts "Creating activities"
 
   Activity.create!({
     prompt: "this is the first seed data",
     style: "multiple-choice",
-    options: "ra ra ra"
+    options: "{\"option1\":\"option a\",\"option2\":\"option b\"}",
   })
   Activity.create!({
     prompt: "this is the second seed data",
     style: "multiple-choice",
-    options: "ra ra ra"
+    options: "{\"option1\":\"option a\",\"option2\":\"option b\"}",
   })
   Activity.create!({
     prompt: "this is the third seed data",
     style: "multiple-choice",
-    options: "ra ra ra"
+    options: "{\"option1\":\"option a\",\"option2\":\"option b\"}",
   })
 
   puts "Done!"

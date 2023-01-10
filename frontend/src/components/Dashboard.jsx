@@ -54,11 +54,13 @@ function Dashboard() {
           <h3 className="activity-index-header-centered" >Last Modified</h3>
           <h3 className="activity-index-header-centered" >Responses</h3>
         </div>
-
+        {console.log("ACTIVITIES FROM DASHBOARD:")}
+        {console.log(activities)}
         {Object.values(activities).map((activity) => {
           return(
             <ActivityIndexItem
               key={activity.id}
+              id={activity.id}
               order={activity.order}
               prompt={activity.prompt}
               modified={activity.updatedAt}

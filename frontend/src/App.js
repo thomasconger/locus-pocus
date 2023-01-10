@@ -7,7 +7,8 @@ import Dashboard from './components/Dashboard';
 import Navigation from './components/Navigation';
 import ModalRoot from './components/ModalRoot';
 import Splash from './components/Splash';
-
+import ActivityShow from './components/ActivityShow';
+import ResponseForm from './components/ResponseForm';
 
 
 function App() {
@@ -28,8 +29,14 @@ function App() {
         <Route path="/signup">
           <SignupFormPage />
         </Route>
+        <Route path="/show/:id">
+          <ResponseForm></ResponseForm>
+        </Route>
         <Route path="/dashboard">
           <Dashboard />
+        </Route>
+        <Route path="/activity/:id">
+          <ActivityShow></ActivityShow>
         </Route>
         <Route path="*">
           <Redirect to="/" />

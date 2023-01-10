@@ -25,15 +25,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_04_233156) do
   end
 
   create_table "responses", force: :cascade do |t|
-    t.string "type", null: false
     t.json "body", null: false
-    t.string "session_token", null: false
-    t.bigint "user_id", null: false
     t.bigint "activity_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["activity_id"], name: "index_responses_on_activity_id"
-    t.index ["user_id"], name: "index_responses_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -50,5 +46,4 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_04_233156) do
 
   add_foreign_key "activities", "users"
   add_foreign_key "responses", "activities"
-  add_foreign_key "responses", "users"
 end

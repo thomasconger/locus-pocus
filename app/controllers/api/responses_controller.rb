@@ -1,8 +1,13 @@
-class Api::UsersController < ApplicationController
+class Api::ResponsesController < ApplicationController
   wrap_parameters include: Response.attribute_names + ['password']
 
   def create
-    
+    @response = Response.new(response_params)
+    if @response.save
+      render :show
+    else
+      render json: { errors: @response.errors.full_messages }, status: :unprocessable_entity
+    end
   end
 
   def index
@@ -20,6 +25,6 @@ class Api::UsersController < ApplicationController
   private
 
   def response_params
-    params.require(:response).permit(:email, :username, :password)
+    params.require(:response).permit(:body, :activity_id)
   end
 end
