@@ -1,12 +1,12 @@
 databases:
-  - name: locus-pocus
-    user: locus-pocus
+  - name: locus_pocus
+    user: locus_pocus
     plan: free
     region: oregon
 
 services:
   - type: web
-    name: locus-pocus
+    name: locus_pocus
     plan: free
     region: ohio
     branch: main
