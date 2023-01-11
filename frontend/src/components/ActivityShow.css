@@ -17,3 +17,13 @@
   display: flex;
   flex-direction: column;
 }
+
+.responses-index-wrapper {
+  width: 750px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 100px;
+  font-family: sans-serif;
+  display: grid;
+  grid-template-columns: 1fr 6fr 4fr;
+}

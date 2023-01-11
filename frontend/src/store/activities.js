@@ -37,7 +37,7 @@ export const removeActivity = (id) => {
 export const createActivity = (activity) => async (dispatch) => {
   const response = await csrfFetch('/api/activities', {
     method: 'POST',
-    body: JSON.stringify(activity)
+    body: activity
     }
   )
   const data = await response.json();
@@ -101,7 +101,6 @@ const initialState = {}
 const activityReducer = (state = initialState, action) => {
   switch (action.type) {
     case RECEIVE_ACTIVITY:
-      console.log(action.payload)
       return {...state, ...action.payload};
     case RECEIVE_ACTIVITIES:
       return {...state, ...action.payload} ;

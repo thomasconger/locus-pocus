@@ -14,6 +14,8 @@ class Api::ResponsesController < ApplicationController
   end
 
   def show
+    @responses = Activity.find(params[:id]).responses
+    render :show
   end
 
   def update

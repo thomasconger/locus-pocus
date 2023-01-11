@@ -37,6 +37,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_04_233156) do
     t.string "username", null: false
     t.string "password_digest", null: false
     t.string "session_token", null: false
+    t.string "live_activity_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true

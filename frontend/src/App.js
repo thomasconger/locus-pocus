@@ -9,7 +9,7 @@ import ModalRoot from './components/ModalRoot';
 import Splash from './components/Splash';
 import ActivityShow from './components/ActivityShow';
 import ResponseForm from './components/ResponseForm';
-
+import LiveForm from './components/LiveForm';
 
 function App() {
 
@@ -28,6 +28,9 @@ function App() {
         </Route>
         <Route path="/signup">
           <SignupFormPage />
+        </Route>
+        <Route path="/now-showing/:userId">
+          <LiveForm></LiveForm>
         </Route>
         <Route path="/show/:id">
           <ResponseForm></ResponseForm>

@@ -33,6 +33,19 @@
   align-content: center;
 }
 
+.activity-prompt {
+  display: grid;
+  grid-template-columns: 10fr 1fr;
+}
+
+.activity-prompt-broadcast-wrapper {
+  background-color: light-grey;
+}
+
+.activity-prompt-broadcast-wrapper:hover {
+  color: green;
+}
+
 .activity-index-header-centered {
   text-align: center;
 }
@@ -42,7 +55,7 @@
   grid-template-columns: 1fr 1fr;
 }
 
-.activity-index-header-right-icon i {
+.activity-index-header-right-d i {
   text-align: right;
   padding-right: 20px;
   color: black;

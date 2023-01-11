@@ -12,7 +12,8 @@ ApplicationRecord.transaction do
   User.create!(
     username: 'Demo-lition',
     email: 'demo@user.io',
-    password: 'password'
+    password: 'password',
+    live_activity_id: 1
   )
 
   # More users

@@ -1,6 +1,7 @@
 import session from './session';
 import activities from './activities'
 import responses from './responses'
+import users from './users'
 import {createStore, combineReducers, applyMiddleware, compose} from 'redux'
 import thunk from 'redux-thunk'
 
@@ -18,7 +19,8 @@ if (process.env.NODE_ENV === 'production') {
 const rootReducer = combineReducers({
   session,
   activities,
-  responses
+  responses,
+  users
 });
 
 const configureStore = (preloadedState) => {
