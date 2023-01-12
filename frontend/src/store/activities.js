@@ -37,7 +37,7 @@ export const removeActivity = (id) => {
 export const createActivity = (activity) => async (dispatch) => {
   const response = await csrfFetch('/api/activities', {
     method: 'POST',
-    body: activity
+    body: JSON.stringify(activity)
     }
   )
   const data = await response.json();
