@@ -4,6 +4,7 @@ class Api::ResponsesController < ApplicationController
   def create
     @response = Response.new(response_params)
     if @response.save
+      ActivityChannel.broadcast_to(@response.activity, @response)
       render :show
     else
       render json: { errors: @response.errors.full_messages }, status: :unprocessable_entity

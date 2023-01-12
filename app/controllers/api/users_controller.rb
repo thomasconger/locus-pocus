@@ -24,6 +24,7 @@ class Api::UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user&.update(user_params)
+      UserChannel.broadcast_to(@user, @user)
       render :show
     end
     # if @user&.update(live_activity_id: )

@@ -1,6 +1,7 @@
 class Api::ActivitiesController < ApplicationController
   wrap_parameters include: Activity.attribute_names
 
+  #haven't refactored
   def create
     @activity = Activity.new(activity_params)
     if @activity.save
@@ -10,16 +11,19 @@ class Api::ActivitiesController < ApplicationController
     end
   end
 
+  # haven't refactored
   def index
     @activities = Activity.all
     render :index
   end
 
+  # haven't refactored
   def show
     @activity = Activity.find(params[:id])
     render :show
   end
 
+  # haven't refactored
   def update
     @activity = Activity.find(params[:id])
     @activity.update(activity_params)
@@ -38,6 +42,6 @@ class Api::ActivitiesController < ApplicationController
   private
 
   def activity_params
-    params.require(:activity).permit(:prompt, :style, :options, :presenter_id)
+    params.require(:activity).permit(:prompt, :style, :options, :user_id)
   end
 end
