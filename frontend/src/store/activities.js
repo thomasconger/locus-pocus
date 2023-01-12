@@ -62,7 +62,7 @@ export const updateActivity = (id, activity) => async (dispatch) => {
   return response;
 }
 
-export const fetchActivities = ( ) => async (dispatch) => {
+export const fetchActivities = ( userId ) => async (dispatch) => {
   const response = await csrfFetch('/api/activities')
   const data = await response.json();
   const formatted = data.reduce((a,v)=>({...a, [v.id]: v}),{});

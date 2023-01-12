@@ -2,22 +2,30 @@ import csrfFetch from "./csrf"
 
 // action constants
 
-const RECEIVE_RESPONSE = 'post/receiveResponse'
-const RECEIVE_RESPONSES = 'post/receiveResponses'
+const RECEIVE_RESPONSE = 'responses/receiveResponse'
+const RECEIVE_RESPONSES = 'responses/receiveResponses'
+const CLEAR_RESPONSES = 'responses/clearResponses'
 
 // action creators
 
-const receiveResponse = (response) => {
+export const receiveResponse = (response) => {
   return {
     type: RECEIVE_RESPONSE,
     payload: {[response.id]: response}
   }
 }
 
-const receiveResponses = (responses) => {
+export const receiveResponses = (responses) => {
   return {
     type: RECEIVE_RESPONSES,
     payload: responses
+  }
+}
+
+export const clearResponses = () => {
+  return {
+    type: CLEAR_RESPONSES,
+    payload: {}
   }
 }
 
@@ -37,12 +45,8 @@ export const createResponse = (payload) => async (dispatch) => {
 }
 
 export const fetchResponses = (activity_id) => async (dispatch) => {
-  console.log("in fetch reponses")
   const response = await csrfFetch(`/api/responses/${activity_id}`)
   const data = await response.json();
-  console.log("IN FETCH RESPONSES, DATA:")
-  console.log(data)
-  console.log(response)
   const formatted = data.reduce((a,v)=>({...a, [v.id]: v}),{});
   if (response.ok) {
     dispatch(receiveResponses(formatted))
@@ -60,6 +64,8 @@ const responseReducer = (state = initialState, action ) => {
       return {...state, ...action.payload};
     case RECEIVE_RESPONSES:
       return {...state, ...action.payload};
+    case CLEAR_RESPONSES:
+      return {};
     default:
       return state;
   }

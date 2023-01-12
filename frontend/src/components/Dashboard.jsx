@@ -15,7 +15,10 @@ import { fetchActivities } from "../store/activities";
 function Dashboard() {
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
-  const activities = useSelector(state => state.activities)
+  const activities = useSelector(state => Object.values(state.activities).filter((activity)=>{
+    return activity.userId === sessionUser.id
+  }))
+
   const [show, setShow] = useState(false);
 
 

@@ -3,7 +3,9 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom'
 import { fetchActivity, deleteActivity, updateActivity } from '../store/activities';
-import { fetchResponses } from '../store/responses';
+import { clearResponses, fetchResponses, receiveResponse } from '../store/responses';
+import consumer from '../consumer';
+
 
 
 // Make the default values of from informed by state
@@ -13,21 +15,41 @@ const ActivityShow = () => {
   const dispatch = useDispatch();
   let params = useParams();
   let activity = useSelector((state) => state.activities[params.id])
-  let responses = useSelector((state) => Object.values(state.responses).filter((response)=>(response.activityId == params.id)))
-  console.log("RESPONSES BELOW")
-  console.log(responses);
+  let responses = useSelector((state) => (state.responses))
+
+  // responses = Object.values(responses).filter((response)=>(response.activityId == params.id))
 
   const [formOptions, setFormOptions] = useState({});
-  const [prompt, setPrompt] = useState("")
+  const [prompt, setPrompt] = useState("");
 
   useEffect(()=>{
-    dispatch(fetchActivity(params.id));
-    dispatch(fetchResponses(params.id));
+
     if (activity?.options) {
       setFormOptions({...JSON.parse(activity.options)})
       setPrompt(activity.prompt)
     }
-  },[params, activity?.options])
+
+    const subscription  = consumer.subscriptions.create(
+      { channel: 'ActivityChannel', id: params.id},
+      {
+        connected: () => {
+          console.log("Connected!")
+        },
+        received: response => {
+          console.log("You've received data!")
+          dispatch(receiveResponse(response))
+
+        }
+      }
+    )
+    return () => subscription?.unsubscribe();
+  },[ activity?.options ])
+
+  useEffect(()=>{
+    dispatch(fetchActivity(params.id));
+    dispatch(fetchResponses(params.id));
+    return () => dispatch(clearResponses());
+  },[dispatch, params.id])
 
   let options
 
@@ -67,6 +89,7 @@ const ActivityShow = () => {
       </form>
     </div>
     <div className="responses-index-wrapper">
+    {/* .filter((response)=>(response.activityId == params.id)). */}
       { responses ?
         Object.values(responses).map((response)=>{
           return (<>
