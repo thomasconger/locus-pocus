@@ -9,6 +9,9 @@ ApplicationRecord.transaction do
   puts "Resetting primary keys..."
   # For easy testing, so that after seeding, the first `User` has `id` of 1
   ApplicationRecord.connection.reset_pk_sequence!('users')
+  ApplicationRecord.connection.reset_pk_sequence!('activities')
+  ApplicationRecord.connection.reset_pk_sequence!('responses')
+
 
   puts "Creating users..."
   # Create one user with an easy to remember username, email, and password:
@@ -31,15 +34,15 @@ ApplicationRecord.transaction do
   puts "Creating activities"
 
   Activity.create!({
-    prompt: "this is the first seed data",
+    prompt: "Who is the better magician's assistant?",
     style: "multiple-choice",
-    options: "{\"option1\":\"option a\",\"option2\":\"option b\"}",
+    options: "{\"option1\":\"Cheshire Cat\",\"option2\":\"Mad Hatter\"}",
     user_id: 1
   })
   Activity.create!({
-    prompt: "this is the second seed data",
+    prompt: "There's a beautiful garden through a tiny door. How do you get through?",
     style: "multiple-choice",
-    options: "{\"option1\":\"option a\",\"option2\":\"option b\"}",
+    options: "{\"option1\":\"Wait for the door to grow\",\"option2\":\"Change your perspective so the door gets bigger\",\"option3\":\"With great effort\",\"option4\":\"Drink the potion that says 'drink me'\"}",
     user_id: 1
   })
   Activity.create!({
@@ -55,6 +58,29 @@ ApplicationRecord.transaction do
     options: "{\"option1\":\"option a\",\"option2\":\"option b\", \"option3\":\"option a\"}",
     user_id: 2
   })
+
+  Response.create({
+    body: "",
+    activity_id: 1
+  })
+  Response.create({
+    body: "",
+    activity_id: 1
+  })
+  Response.create({
+    body: "",
+    activity_id: 1
+  })
+  Response.create({
+    body: "",
+    activity_id: 1
+  })
+  Response.create({
+    body: "",
+    activity_id: 1
+  })
+
+
 
   puts "Done!"
 end
