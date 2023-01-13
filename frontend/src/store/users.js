@@ -1,5 +1,6 @@
 import { receiveActivity } from "./activities"
 import csrfFetch from "./csrf"
+import { setCurrentUser } from "./session"
 
 // action constants
 const RECEIVE_USER = 'users/receiveUser'
@@ -40,6 +41,14 @@ export const updateUserActivity = (userId, activityId) => async (dispatch) => {
     "method": "PATCH",
     "body": JSON.stringify({"live_activity_id": activityId})
   })
+  const data = await response.json();
+  if (response.ok) {
+    console.log("THIS IS IN THE UPDATE USER ACTIVTY THUNK ACTION CREATOR")
+    console.log(data)
+    dispatch(setCurrentUser(data.user))
+
+  }
+
 }
 
 
