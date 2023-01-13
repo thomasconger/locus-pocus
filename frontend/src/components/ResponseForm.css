@@ -6,9 +6,12 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100vw;
-  height: 100vh;
-  background-color: #000;
+  width: 750px;
+  background-color: white;
+  color: black;
+  border-radius: 10px;
+  padding:
+
 
 }
 
@@ -17,8 +20,7 @@
   padding: 50px;
   background-color: white;
   color: black;
-  border-color:#9ecaed;
-  box-shadow:0 0 20px #9ecaed;
+
 }
 
 .response-prompt {
@@ -37,6 +39,7 @@
 .response-form {
   display: flex;
   flex-direction: column;
+  
 }
 
 .response-form button {
@@ -65,7 +68,7 @@
   color: lightgray;
 }
 
-input[type="radio"] {
+/* input[type="radio"] {
   appearance: none;
   background-color: #fff;
   margin: 0;
@@ -89,4 +92,4 @@ input[type="radio"]::before {
 
 input[type="radio"]:checked::before {
   transform: scale(1);
-}
+} */
