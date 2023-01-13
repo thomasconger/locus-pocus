@@ -53,6 +53,9 @@ Rails.application.configure do
   # Highlight code that triggered database queries in logs.
   config.active_record.verbose_query_logs = true
 
+  # redis, added per aa instructions
+  config.action_controller.perform_caching = true
+  config.cache_store = :redis_cache_store, { url: "redis://localhost:6379" }
 
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true

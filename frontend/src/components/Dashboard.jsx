@@ -34,28 +34,29 @@ function Dashboard() {
 
   return (
     <>
-      <div className="live-indicator-grid">
+      {/* <div className="live-indicator-grid">
         <div className="live-status-icon-flexbox">
           <i className="fa-solid fa-tower-broadcast fa-3x"></i>
         </div>
         <p className="live-status">No live activities</p>
         <p className="live-learn-more">Learn More</p>
-      </div>
+      </div> */}
       <div className="toolbar-flexbox">
-        <button onClick={ addModal } className="btn btn-primary m-4">Open modal</button>
-        <button>Folder</button>
-        <button>Upload</button>
+        <h1 className="greeting">// HEY...<span className="greeting-subtext">HAVE A MAGICAL DAY 😊</span></h1>
       </div>
       <div className="activity-grid">
-        <h2 className="activity-index-title">Activities Grid</h2>
+        <div className="activity-toolbar">
+          <h2 className="activity-index-title">Activities Grid</h2>
+          <button onClick={ addModal } className="new-activity-button">New Activity</button>
+        </div>
         <div className="activity-index-headers">
-          <div className="activity-index-header-right-icon">
-            <h3 >Order </h3>
-            <i className="fa-regular fa-square"></i>
+          <div className="activity-index-header-centered">
+            <h3 > Status </h3>
+            {/* <i className="fa-regular fa-square"></i> */}
           </div>
           <h3>Name</h3>
-          <h3 className="activity-index-header-centered" >Last Modified</h3>
-          <h3 className="activity-index-header-centered" >Responses</h3>
+          <h3 className="activity-index-header-centered" >Set Live</h3>
+          {/* <h3 className="activity-index-header-centered" >Responses</h3> */}
         </div>
         {Object.values(activities).map((activity) => {
           return(

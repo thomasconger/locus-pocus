@@ -5,6 +5,7 @@ import ModalFooter from "./ModalFooter";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createActivity} from "../store/activities";
+import './ActivityModal.css'
 
 export default function ActivityModal(props) {
 
@@ -25,7 +26,7 @@ export default function ActivityModal(props) {
 
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     setErrors([]);
     // need to write thunk action creator
 
@@ -57,13 +58,9 @@ export default function ActivityModal(props) {
 
   const removeOption = (e) => {
     e.preventDefault();
-    console.log("PRIOR TO DELETION")
-    console.log(newActivity)
     setOptionCount(optionCount -1)
     const revisedActivity = newActivity
     delete revisedActivity[`option${optionCount -1}`]
-    console.log("AFTER DELETE")
-    console.log(revisedActivity)
     setNewActivity(revisedActivity)
 
   }
@@ -71,32 +68,34 @@ export default function ActivityModal(props) {
   return (
     <Modal>
       <ModalHeader>
-        <button onClick={ props.close } className="btn btn-primary">Close Modal</button>
-        <h3>Create New Activity</h3>
+        <div className="activity-modal-header">
+          <div>
+            <h3>Create New Activity</h3>
+            <p>Set the prompt and write the options!</p>
+          </div>
+          <button className="within-activity-modal-button-cancel" onClick={ props.close } >CANCEL</button>
+        </div>
       </ModalHeader>
       <ModalBody>
-        <form className="activity-modal" onSubmit={handleSubmit}>
-          <input className="option" placeholder="Option A" value={option1} onChange={(e)=>{setOption1(e.target.value)}}></input>
-          <input className="option" placeholder="Option B" value={option2} onChange={(e)=>{setOption2(e.target.value)}}></input>
-          <button>Submit</button>
-        </form>
-        <h1>REFACTOR BELOW</h1>
-        <form className="activity-modal" onSubmit={handleSubmit}>
+        <form className="activity-modal" >
         <input className="prompt" placeholder="Prompt" value={prompt} onChange={(e)=>{setPrompt(e.target.value)}}></input>
         {newActivity && Object.values(newActivity).map((text, i)=>{
 
           return (
-            <input key={`option${i}`} id={i} type="text" onChange={(e)=>{handleFormChange(e, i)}} value={text}/>
+            <input className="option" key={`option${i}`} id={i} type="text" onChange={(e)=>{handleFormChange(e, i)}} value={text}/>
           )
         })}
-        <button>Submit</button>
+          <div className="button-row">
+            <div>
+              <button className="within-activity-modal-button" onClick={addOption}>ADD </button>
+              <button className="within-activity-modal-button" onClick={removeOption}>SUBTRACT </button>
+            </div>
+            <div>
+              <button className="within-activity-modal-button-submit" onClick={handleSubmit}>SUBMIT</button>
+            </div>
+          </div>
       </form>
-      <form onSubmit={addOption}>
-        <button>Add Option</button>
-      </form>
-      <form onSubmit={removeOption}>
-        <button>Remove Option</button>
-      </form>
+
       </ModalBody>
       <ModalFooter>
 

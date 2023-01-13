@@ -1,0 +1,94 @@
+.activity-modal {
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.activity-button {
+  background-color: whitesmoke;
+  border-color: whitesmoke;
+  font-size: 18px;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.prompt {
+  margin-bottom: 25px;
+  padding: 15px;
+  font-size: 22px;
+}
+
+.option {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+  font-size: 18px;
+}
+
+.activity-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.button-row {
+  display: flex;
+  margin-top: 5vh;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.within-activity-modal-button {
+  background-color: white;
+  border-color: white;
+  font-size: 12px;
+  border-radius: 10px;
+  padding: 10px;
+  width: 150px;
+}
+
+.within-activity-modal-button:hover {
+  background-color: whitesmoke;
+  border-color: whitesmoke;
+  font-size: 12px;
+  border-radius: 10px;
+  padding: 10px;
+  width: 150px;
+}
+
+.within-activity-modal-button-submit {
+  background-color: whitesmoke;
+  border-color: whitesmoke;
+  color: black;
+  font-size: 12px;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.within-activity-modal-button-submit:hover {
+  background-color: black;
+  border-color: black;
+  color: white;
+  font-size: 12px;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.within-activity-modal-button-cancel {
+  background-color: white;
+  border-color: white;
+  color: black;
+  font-size: 12px;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.within-activity-modal-button-cancel:hover {
+  background-color: whitesmoke;
+  border-color: whitesmoke;
+  color: black;
+  font-size: 12px;
+  border-radius: 10px;
+  padding: 10px;
+}

@@ -13,7 +13,7 @@ const storeCurrentUser = user => {
   else sessionStorage.removeItem("currentUser");
 }
 
-const setCurrentUser = (user) => {
+export const setCurrentUser = (user) => {
   return {
     type: SET_CURRENT_USER,
     payload: user

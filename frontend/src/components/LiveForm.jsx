@@ -26,9 +26,10 @@ const LiveForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(user.liveActivityId)
     dispatch(createResponse({
       body: choice,
-      activity_id: "1"
+      activity_id: user.liveActivityId
     }))
   }
 
@@ -37,21 +38,21 @@ const LiveForm = () => {
   return (
     <>
       <div className="response-form-wrapper">
-        <h1>Response Form</h1>
+        <div className="response-card">
+          <h2 className="response-prompt">{activity?.prompt}</h2>
 
-        <h2>{activity?.prompt}</h2>
-
-        <form className="response-form" onSubmit={handleSubmit}>
-          {activity?.options && Object.values(JSON.parse(activity.options)).map((text, i)=>{
-            return (
-            <label key={`option${i}`} htmlFor={i}>
-              <input id={i} type="radio" checked={text === choice} onChange={e => setChoice(text)}/>
-              {text}
-            </label>
-            )
-          })}
-          <button>Submit</button>
-        </form>
+          <form className="response-form" onSubmit={handleSubmit}>
+            {activity?.options && Object.values(JSON.parse(activity.options)).map((text, i)=>{
+              return (
+              <label className="response-input" key={`option${i}`} htmlFor={i}>
+                <input id={i} type="radio" checked={text === choice} onChange={e => setChoice(text)}/>
+                {text}
+              </label>
+              )
+            })}
+            <button>Submit</button>
+          </form>
+        </div>
       </div>
     </>
   );

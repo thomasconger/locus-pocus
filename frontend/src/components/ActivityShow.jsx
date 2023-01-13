@@ -78,24 +78,36 @@ const ActivityShow = () => {
   return (
     <>
     <div className="activity-show-wrapper">
-      <h1>Activity Show<Link to="/dashboard"> back </Link></h1>
-      <button onClick={handleDelete}>Delete</button>
-      <form className="activity-show-edit" onSubmit={handleSubmit}>
-        <input value={prompt} onChange={(e)=> setPrompt(e.target.value)} />
+      <div className="activity-show-flex">
+        <h1>Activity Show</h1>
+        <Link to="/dashboard"><button className="activity-show-button">back</button></Link>
+      </div>
+
+      <form className="activity-show-edit" >
+        <input className="activity-show-prompt" value={prompt} onChange={(e)=> setPrompt(e.target.value)} />
         {
-          options?.map((option, i)=>{return (<input key={i} value={formOptions?.[`option${i+1}`]} onChange={(e)=>{handleFormChange(e, i)}}/>)})
+          options?.map((option, i)=>{return (
+          <div className="activity-show-option-wrapper">
+            <input className="activity-show-option" key={i} value={formOptions?.[`option${i+1}`]} onChange={(e)=>{handleFormChange(e, i)}}/>
+          </div>
+          )})
         }
-        <button>Update</button>
+        <div className="activity-show-button-row">
+          <button className="activity-show-button" onClick={handleDelete}>Delete</button>
+          <button className="activity-show-button-update" onClick={handleSubmit} >Update</button>
+        </div>
+
       </form>
     </div>
     <div className="responses-index-wrapper">
     {/* .filter((response)=>(response.activityId == params.id)). */}
+      <h2 className="response-serif"> Responses → </h2>
       { responses ?
         Object.values(responses).map((response)=>{
           return (<>
-            <p>{response.id}</p>
-            <p>{response.body}</p>
-            <p>{response.createdAt}</p>
+            {/* <p>{response.id}</p> */}
+            <p className="responses">{response.body}</p>
+            {/* <p>{response.createdAt}</p> */}
           </>)
         })
        : "" }

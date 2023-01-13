@@ -10,17 +10,28 @@
   grid-template-rows: auto 50px 50px;
   grid-auto-rows: minmax(50px, auto);
   font-family: sans-serif;
+  background-color: white;
+  color: black;
+  border-radius: 10px;
+  padding: 30px;
+  box-sizing: border-box;
 
+}
+
+.activity-grid a {
+  text-decoration: none;
+  color: black;
 }
 
 .activity-index-title {
   font-size: 28px;
   font-weight: 600;
+  align-self: center;
 }
 
 .activity-index-headers {
   display: grid;
-  grid-template-columns: 1fr 5fr 2fr 2fr;
+  grid-template-columns: 1fr 8fr 1fr;
   color: gray;
   font-weight: 600;
   align-content: center;
@@ -28,8 +39,8 @@
 
 .activity-index-item {
   display: grid;
-  grid-template-columns: 1fr 5fr 2fr 2fr;
-  border-top: solid;
+  grid-template-columns: 1fr 8fr 1fr;
+  border-top: solid #efefef;
   align-content: center;
 }
 
@@ -40,10 +51,9 @@
 
 .activity-prompt-broadcast-wrapper {
   background-color: light-grey;
-}
-
-.activity-prompt-broadcast-wrapper:hover {
-  color: green;
+  display: flex;
+  justify-content: center;
+  /* justify-content: center; */
 }
 
 .activity-index-header-centered {
@@ -55,10 +65,8 @@
   grid-template-columns: 1fr 1fr;
 }
 
-.activity-index-header-right-d i {
+.activity-index-header-right {
   text-align: right;
-  padding-right: 20px;
-  color: black;
 }
 
 .activity-index-detail-centered {
@@ -76,6 +84,7 @@
 .toolbar-flexbox {
   display: flex;
   width: clamp(750px, 80%, 1800px);
+  margin-top: 20vh;
   margin-left: auto;
   margin-right: auto;
   grid-template-columns: 1fr
@@ -83,6 +92,15 @@
 
 .toolbar-grid button {
   width: 100px;
+}
+
+.live-button {
+  border-radius: 50%;
+  background-color: whitesmoke;
+}
+
+.live-button:hover {
+  background-color: black;
 }
 
 /* live indicator */
@@ -125,4 +143,39 @@
 .live-status {
   border-left: 1px solid gray;
   padding: 10px;
+}
+
+.new-activity-button {
+  background-color: whitesmoke;
+  border-color: whitesmoke;
+  font-size: 18px;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.new-activity-button:hover {
+  background-color: black;
+  color: white;
+  font-size: 18px;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.activity-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  margin-bottom: 5vh;
+}
+
+.broadcast-icon-wrapper {
+  text-align: center;
+}
+
+.greeting {
+  font-size: 72px;
+}
+
+.greeting-subtext {
+  font-size: 12px;
 }
