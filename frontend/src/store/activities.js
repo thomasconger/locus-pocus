@@ -1,5 +1,5 @@
 import csrfFetch from "./csrf";
-
+import { receiveResponses } from "./responses";
 // action constants
 
 const RECEIVE_ACTIVITY = 'activity/receiveActivity'
@@ -77,6 +77,7 @@ export const fetchActivity = (id) => async (dispatch) => {
   const data = await response.json();
   if (response.ok) {
     dispatch(receiveActivity(data.activity))
+    dispatch(receiveResponses(data.responses))
   }
   return response;
 }

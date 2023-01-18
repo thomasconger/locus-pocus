@@ -10,6 +10,7 @@ import Splash from './components/Splash';
 import ActivityShow from './components/ActivityShow';
 import ResponseForm from './components/ResponseForm';
 import LiveForm from './components/LiveForm';
+import EditResponse from './components/EditResponse';
 
 function App() {
 
@@ -34,6 +35,9 @@ function App() {
         </Route>
         <Route path="/show/:id">
           <ResponseForm></ResponseForm>
+        </Route>
+        <Route path="/response/:id">
+          <EditResponse></EditResponse>
         </Route>
         <Route path="/dashboard">
           <Dashboard />
