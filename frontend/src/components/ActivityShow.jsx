@@ -47,7 +47,7 @@ const ActivityShow = () => {
 
   useEffect(()=>{
     dispatch(fetchActivity(params.id));
-    dispatch(fetchResponses(params.id));
+    // dispatch(fetchResponses(params.id));
     return () => dispatch(clearResponses());
   },[dispatch, params.id])
 
@@ -59,6 +59,7 @@ const ActivityShow = () => {
 
 
   const handleDelete = (e) => {
+    console.log("handle delete")
     e.preventDefault();
     dispatch(deleteActivity(params.id));
   }
@@ -106,7 +107,7 @@ const ActivityShow = () => {
         Object.values(responses).map((response)=>{
           return (<>
             {/* <p>{response.id}</p> */}
-            <p className="responses">{response.body}</p>
+            <a href={`/response/${response.id}`} ><p className="responses">{response.body}</p></a>
             {/* <p>{response.createdAt}</p> */}
           </>)
         })

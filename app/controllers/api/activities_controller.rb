@@ -20,7 +20,11 @@ class Api::ActivitiesController < ApplicationController
   # haven't refactored
   def show
     @activity = Activity.find(params[:id])
-    render :show
+    if @activity
+      render :show
+    else
+      render json: { errors: "Acivity not found." }, status: :unprocessable_entity
+    end
   end
 
   # haven't refactored
@@ -33,7 +37,7 @@ class Api::ActivitiesController < ApplicationController
   def destroy
     @activity = Activity.find(params[:id])
     if @activity.delete
-      render json: "yes"
+      render json: { "message": "The activity was deleted"}
     else
       render json: { errors: @activity.errors.full_messages }, status: :unprocessable_entity
     end

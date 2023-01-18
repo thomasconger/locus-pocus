@@ -44,12 +44,45 @@ export const createResponse = (payload) => async (dispatch) => {
   return response
 }
 
-export const fetchResponses = (activity_id) => async (dispatch) => {
-  const response = await csrfFetch(`/api/responses/${activity_id}`)
+export const fetchResponses = (id) => async (dispatch) => {
+  // this is using the activity id
+  const response = await csrfFetch(`/api/responses/${id}`)
   const data = await response.json();
   const formatted = data.reduce((a,v)=>({...a, [v.id]: v}),{});
   if (response.ok) {
     dispatch(receiveResponses(formatted))
+  }
+}
+
+export const fetchResponse = (id) => async (dispatch) => {
+  console.log("In fetch response")
+  const response = await csrfFetch(`/api/responses/${id}`)
+  const data = await response.json();
+  if (response.ok) {
+    dispatch(receiveResponse(data))
+  }
+}
+
+export const deleteResponse = (id) => async (dispatch) => {
+  console.log("in delete response")
+  const response = await csrfFetch(`/api/responses/${id}`, {
+    "method": "DELETE",
+  })
+  const data = await response.json();
+  if (response.ok) {
+    dispatch(clearResponses())
+  }
+}
+
+export const updateResponse = (id, response) => async (dispatch) => {
+  console.log("in update response")
+  const res = await csrfFetch(`/api/responses/${id}`,{
+    method: 'PATCH',
+    body: JSON.stringify(response)
+  })
+  const data = await res.json();
+  if (res.ok) {
+    dispatch(receiveResponse(data.response))
   }
 }
 

@@ -15,14 +15,30 @@ class Api::ResponsesController < ApplicationController
   end
 
   def show
-    @responses = Activity.find(params[:id]).responses
-    render :show
+    @response = Response.find(params[:id])
+    if @response
+      render :show
+    else
+      render json: { errors: "Response not found. " }, status: :unprocessable_entity
+    end
   end
 
   def update
+    @response = Response.find(params[:id])
+    if @response && @response.update(response_params)
+      render :show
+    else
+      render json: { errors: @response.errors.full_messages }, status: :unprocessable_entity
+    end
   end
 
   def destroy
+    @response = Response.find(params[:id])
+    if @response.delete
+      render json: { "message": "The response was deleted"}
+    else
+      render json: { errors: @activity.errors.full_messages }, status: :unprocessable_entity
+    end
   end
 
   private
