@@ -3,6 +3,8 @@ json.user do
 end
 
 
-json.activity do
-  json.extract! Activity.find(@user.live_activity_id), :id, :prompt, :style, :options, :created_at, :updated_at
+if @user.live_activity_id then
+  json.activity do
+    json.extract! Activity.find(@user.live_activity_id), :id, :prompt, :style, :options, :created_at, :updated_at
+  end
 end

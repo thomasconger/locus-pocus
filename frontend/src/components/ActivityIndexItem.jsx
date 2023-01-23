@@ -20,7 +20,7 @@ const ActivityIndexItem = ({order, prompt, modified, responses, id}) => {
 
   return (
     <div className="activity-index-item">
-          <div class="broadcast-icon-wrapper">
+          <div className="broadcast-icon-wrapper">
             { icon }
           </div>
           <div className="activity-prompt">

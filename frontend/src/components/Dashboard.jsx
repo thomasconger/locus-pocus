@@ -16,7 +16,7 @@ function Dashboard() {
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
   const activities = useSelector(state => Object.values(state.activities).filter((activity)=>{
-    return activity.userId === sessionUser.id
+    return activity.userId === sessionUser?.id
   }))
 
   const [show, setShow] = useState(false);
@@ -48,6 +48,16 @@ function Dashboard() {
         <div className="activity-toolbar">
           <h2 className="activity-index-title">Activities Grid</h2>
           <button onClick={ addModal } className="new-activity-button">New Activity</button>
+        </div>
+        <div>
+          <p>To edit an activity or see its responses, click on its name!</p>
+          <br></br>
+          <a href={`/now-showing/${sessionUser?.id}`}>
+            <p>To get a link to share your live question and to  collect responses, click here.</p>
+          </a>
+          <br></br>
+
+
         </div>
         <div className="activity-index-headers">
           <div className="activity-index-header-centered">

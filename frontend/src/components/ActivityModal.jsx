@@ -71,7 +71,10 @@ export default function ActivityModal(props) {
         <div className="activity-modal-header">
           <div>
             <h3>Create New Activity</h3>
-            <p>Set the prompt and write the options!</p>
+            <br></br>
+            <p>Set the prompt and write the options! You won't be able to change the number of options later, so think carefully.</p>
+            <br></br>
+
           </div>
           <button className="within-activity-modal-button-cancel" onClick={ props.close } >CANCEL</button>
         </div>
