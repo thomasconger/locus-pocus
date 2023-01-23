@@ -26,7 +26,7 @@ export default function ActivityModal(props) {
 
 
   const handleSubmit = (e) => {
-    // e.preventDefault();
+    e.preventDefault();
     setErrors([]);
     // need to write thunk action creator
 
@@ -42,7 +42,19 @@ export default function ActivityModal(props) {
         "options": optionsPayload,
         "user_id": sessionUser.id
       }
-    ))
+    )).catch(async (res) => {
+      let data;
+      try {
+        console.log("in frontend response handler")
+        // .clone() essentially allows you to read the response body twice
+        data = await res.clone().json();
+      } catch {
+        data = await res.text(); // Will hit this case if the server is down
+      }
+      if (data?.errors) setErrors(data.errors);
+      else if (data) setErrors([data]);
+      else setErrors([res.statusText]);
+    });
   }
 
   const handleFormChange = (e, i) => {
@@ -101,6 +113,10 @@ export default function ActivityModal(props) {
 
       </ModalBody>
       <ModalFooter>
+
+      <ul>
+          {errors?.map(error => <li className="login-error-item" key={error}>{error}</li>)}
+      </ul>
 
       </ModalFooter>
     </Modal>

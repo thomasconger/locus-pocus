@@ -7,7 +7,7 @@ class Api::ActivitiesController < ApplicationController
     if @activity.save
       render :show
     else
-      render json: { errors: @user.errors.full_messages }, status: :unprocessable_entity
+      render json: { errors: ["Activity could not be created"] }, status: :unprocessable_entity
     end
   end
 
