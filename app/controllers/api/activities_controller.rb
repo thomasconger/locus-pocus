@@ -36,7 +36,7 @@ class Api::ActivitiesController < ApplicationController
 
   def destroy
     @activity = Activity.find(params[:id])
-    if @activity.delete
+    if @activity.destroy
       render json: { "message": "The activity was deleted"}
     else
       render json: { errors: @activity.errors.full_messages }, status: :unprocessable_entity

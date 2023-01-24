@@ -4,6 +4,8 @@ class Activity < ApplicationRecord
   validates :prompt, presence: true
 
   belongs_to :user
-  has_many :responses
+
+  has_many :responses,
+    dependent: :destroy
 
 end

@@ -107,8 +107,10 @@ const activityReducer = (state = initialState, action) => {
       return {...state, ...action.payload} ;
     case REMOVE_ACTIVITY:
       const newState = {...state};
-      delete newState[action.payload.id]
-      return newState;
+      console.log('action payload dot id', action.payload)
+      delete newState[action.payload]
+      return {...newState}
+
     default:
       return state;
   }

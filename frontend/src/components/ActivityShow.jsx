@@ -24,6 +24,7 @@ const ActivityShow = () => {
 
   const [formOptions, setFormOptions] = useState({});
   const [prompt, setPrompt] = useState("");
+  const [shouldRedirect, setShouldRedirect] = useState(false)
 
 
   useEffect(()=>{
@@ -63,10 +64,14 @@ const ActivityShow = () => {
     }
 
 
+    const redirect = (<><Redirect to="/login" /></>)
+
     const handleDelete = (e) => {
       console.log("handle delete")
       e.preventDefault();
       dispatch(deleteActivity(params.id));
+      setShouldRedirect(true)
+
     }
 
   const handleFormChange = (e, i) => {
@@ -97,8 +102,13 @@ const ActivityShow = () => {
     console.log(success)
   }
 
+  // if (shouldRedirect) {
+  //   redirect
+  // }
+
   return (
     <>
+    {shouldRedirect && redirect }
     <div className="activity-show-wrapper">
       <div className="activity-show-flex">
         <h1>Activity Show</h1>
