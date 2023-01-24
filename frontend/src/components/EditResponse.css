@@ -9,4 +9,24 @@
   background-color: white;
   color: black;
   border-radius: 10px;
+  padding: 50px;
+}
+
+.activity-button {
+  background-color: whitesmoke;
+  border-color: whitesmoke;
+  font-size: 18px;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.response-edit-form input {
+  font-size: 20px;
+}
+.response-edit-form button {
+  background-color: whitesmoke;
+  border-color: whitesmoke;
+  font-size: 18px;
+  border-radius: 10px;
+
 }

@@ -12,6 +12,7 @@ export default function ActivityModal(props) {
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
   const [errors, setErrors] = useState([])
+  const [success, setSuccess] = useState([])
   const [prompt, setPrompt] = useState("")
   const [option1, setOption1] = useState("");
   const [option2, setOption2] = useState("");
@@ -19,7 +20,7 @@ export default function ActivityModal(props) {
   const [activity, setActivity] = useState({})
   const [optionCount, setOptionCount] = useState(3)
   const [newActivity, setNewActivity] = useState(
-    {"option1":"option 1","option2":"option 2"}
+    {"option1":"","option2":""}
   );
 
   // session user
@@ -31,9 +32,20 @@ export default function ActivityModal(props) {
     // need to write thunk action creator
 
     let optionsPayload = newActivity
-    console.log("OPTIONS PAYLOAD stringified")
+
+    const optionsPayloadHasEmpty = Object.values(newActivity).some((item)=> item == '')
+    if (optionsPayloadHasEmpty) {
+      setSuccess([])
+      return setErrors(['Each option must have a value'])
+    }
+
+    if (prompt == '') {
+      setSuccess([])
+      return setErrors(['You must specify a prompt.'])
+    }
+
     optionsPayload = JSON.stringify(optionsPayload)
-    console.log(optionsPayload)
+
 
     return dispatch(createActivity(
       {
@@ -54,7 +66,9 @@ export default function ActivityModal(props) {
       if (data?.errors) setErrors(data.errors);
       else if (data) setErrors([data]);
       else setErrors([res.statusText]);
-    });
+    }).then(
+      setSuccess(["Success!"])
+    );
   }
 
   const handleFormChange = (e, i) => {
@@ -64,7 +78,7 @@ export default function ActivityModal(props) {
   const addOption = (e) => {
     e.preventDefault();
     setOptionCount(optionCount + 1)
-    setNewActivity({...newActivity, [`option${optionCount}`]: `option ${optionCount}` })
+    setNewActivity({...newActivity, [`option${optionCount}`]: `` })
 
   }
 
@@ -97,7 +111,7 @@ export default function ActivityModal(props) {
         {newActivity && Object.values(newActivity).map((text, i)=>{
 
           return (
-            <input className="option" key={`option${i}`} id={i} type="text" onChange={(e)=>{handleFormChange(e, i)}} value={text}/>
+            <input className="option" key={`option${i}`} id={i} type="text" onChange={(e)=>{handleFormChange(e, i)}} value={text} placeholder='Option'/>
           )
         })}
           <div className="button-row">
@@ -116,6 +130,10 @@ export default function ActivityModal(props) {
 
       <ul>
           {errors?.map(error => <li className="login-error-item" key={error}>{error}</li>)}
+      </ul>
+      <br></br>
+      <ul>
+          {success?.map(success => <li className="success" key={success}>{success}</li>)}
       </ul>
 
       </ModalFooter>

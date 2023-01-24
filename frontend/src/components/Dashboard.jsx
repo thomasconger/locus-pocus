@@ -53,7 +53,7 @@ function Dashboard() {
           <p>To edit an activity or see its responses, click on its name!</p>
           <br></br>
           <a href={`/now-showing/${sessionUser?.id}`}>
-            <p>To get a link to share your live question and to  collect responses, click here.</p>
+            <p>To get a link to share your live question and to collect responses, click here.</p>
           </a>
           <br></br>
 

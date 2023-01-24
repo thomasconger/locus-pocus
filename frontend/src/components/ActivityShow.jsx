@@ -1,7 +1,7 @@
 import './ActivityShow.css'
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useParams } from 'react-router-dom'
+import { Link, Redirect, useParams } from 'react-router-dom'
 import { fetchActivity, deleteActivity, updateActivity } from '../store/activities';
 import { clearResponses, fetchResponses, receiveResponse } from '../store/responses';
 import consumer from '../consumer';
@@ -16,11 +16,15 @@ const ActivityShow = () => {
   let params = useParams();
   let activity = useSelector((state) => state.activities[params.id])
   let responses = useSelector((state) => (state.responses))
+  const sessionUser = useSelector(state => state.session.user);
+  const [errors, setErrors] = useState([])
+  const [success, setSuccess] = useState([])
 
   // responses = Object.values(responses).filter((response)=>(response.activityId == params.id))
 
   const [formOptions, setFormOptions] = useState({});
   const [prompt, setPrompt] = useState("");
+
 
   useEffect(()=>{
 
@@ -41,28 +45,29 @@ const ActivityShow = () => {
 
         }
       }
-    )
-    return () => subscription?.unsubscribe();
-  },[ activity?.options ])
+      )
+      return () => subscription?.unsubscribe();
+    },[ activity?.options ])
 
-  useEffect(()=>{
-    dispatch(fetchActivity(params.id));
-    // dispatch(fetchResponses(params.id));
-    return () => dispatch(clearResponses());
-  },[dispatch, params.id])
+    useEffect(()=>{
+      dispatch(fetchActivity(params.id));
+      // dispatch(fetchResponses(params.id));
+      return () => dispatch(clearResponses());
+    },[dispatch, params.id])
 
-  let options
+    if (!sessionUser) return <Redirect to="/login" />;
+    let options
 
-  if (activity?.options) {
-    options = Object.entries(JSON.parse(activity.options))
-  }
+    if (activity?.options) {
+      options = Object.entries(JSON.parse(activity.options))
+    }
 
 
-  const handleDelete = (e) => {
-    console.log("handle delete")
-    e.preventDefault();
-    dispatch(deleteActivity(params.id));
-  }
+    const handleDelete = (e) => {
+      console.log("handle delete")
+      e.preventDefault();
+      dispatch(deleteActivity(params.id));
+    }
 
   const handleFormChange = (e, i) => {
    setFormOptions({...formOptions, [`option${i+1}`]: e.target.value})
@@ -70,10 +75,26 @@ const ActivityShow = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    const hasNoPrompt = (prompt == '')
+    const hasEmptyOption = (Object.values(formOptions).some((item)=>item == ''))
+
+    if (hasNoPrompt) {
+      setSuccess([])
+      return setErrors(['You must specify a prompt'])
+    } else if (hasEmptyOption) {
+      setSuccess([])
+      return setErrors(['You must provide a value for each option'])
+    }
+
+    setErrors([])
+
     dispatch(updateActivity(params.id, {
       "prompt": prompt,
       "options": JSON.stringify(formOptions)
     }))
+    setSuccess(['Success'])
+    console.log(success)
   }
 
   return (
@@ -83,6 +104,13 @@ const ActivityShow = () => {
         <h1>Activity Show</h1>
         <Link to="/dashboard"><button className="activity-show-button">back</button></Link>
       </div>
+      <ul>
+          {errors.map(error => <li className="login-error-item" key={error}>{error}</li>)}
+      </ul>
+      <ul>
+          {success.map(error => <li className="success" key={success}>{success}</li>)}
+      </ul>
+      <br></br>
 
       <form className="activity-show-edit" >
         <input className="activity-show-prompt" value={prompt} onChange={(e)=> setPrompt(e.target.value)} />
@@ -102,7 +130,7 @@ const ActivityShow = () => {
     </div>
     <div className="responses-index-wrapper">
     {/* .filter((response)=>(response.activityId == params.id)). */}
-      <h2 className="response-serif"> Responses → </h2>
+      <h2 className="response-serif"> Edit your activity's responses by clicking on each link → </h2>
       { responses ?
         Object.values(responses).map((response)=>{
           return (<>
