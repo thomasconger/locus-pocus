@@ -43,8 +43,13 @@ class Api::ActivitiesController < ApplicationController
     end
   end
 
-  def clear
-    render json: { "message": "Testing custom controller action" }
+  def reset
+    @activity = Activity.find(params[:id])
+    if @activity&.responses.destroy_all
+      render json: { "message": "All responses for this activity have been destroyed."}
+    else
+      render json: { "message": "An error occured while deleting related responses." }
+    end
   end
 
   private

@@ -2,7 +2,7 @@ import './ActivityShow.css'
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, Redirect, useParams } from 'react-router-dom'
-import { fetchActivity, deleteActivity, updateActivity } from '../store/activities';
+import { fetchActivity, deleteActivity, updateActivity, resetResponses } from '../store/activities';
 import { clearResponses, fetchResponses, receiveResponse } from '../store/responses';
 import consumer from '../consumer';
 
@@ -78,6 +78,11 @@ const ActivityShow = () => {
    setFormOptions({...formOptions, [`option${i+1}`]: e.target.value})
   }
 
+  const handleClear = (e) => {
+    e.preventDefault();
+    dispatch(resetResponses(params.id))
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -112,7 +117,7 @@ const ActivityShow = () => {
     <div className="activity-show-wrapper">
       <div className="activity-show-flex">
         <h1>Activity Show</h1>
-        <button>Pretend Clear All Responses</button>
+        <button onClick={handleClear}>Pretend Clear All Responses</button>
         <Link to="/dashboard"><button className="activity-show-button">back</button></Link>
       </div>
       <ul>

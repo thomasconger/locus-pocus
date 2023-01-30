@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
     resources :users, only: [:create, :show, :update]
-    get 'activities/clear/(/:id)', to: 'activities#clear'
+    delete 'activities/reset/(/:id)', to: 'activities#reset'
     resources :activities, only: [:create, :index, :show, :update, :destroy]
     resources :responses, only: [:create, :index, :show, :update, :destroy]
     resource :session, only: [:show, :create, :destroy]

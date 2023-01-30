@@ -1,10 +1,11 @@
 import csrfFetch from "./csrf";
-import { receiveResponses } from "./responses";
+import { receiveResponses, clearResponses } from "./responses";
 // action constants
 
 const RECEIVE_ACTIVITY = 'activity/receiveActivity'
 const REMOVE_ACTIVITY = 'activity/removeActivity'
 const RECEIVE_ACTIVITIES = 'activity/receiveActivities'
+const CLEAR_ACTIVITIES = 'activity/clearActivities'
 // action creators
 
 export const receiveActivity = (activity) => {
@@ -24,6 +25,13 @@ export const receiveActivities = (activities) => {
 export const removeActivity = (id) => {
   return {
     type: REMOVE_ACTIVITY,
+    payload: id
+  }
+}
+
+export const clearActivities = (id) => {
+  return {
+    type: CLEAR_ACTIVITIES,
     payload: id
   }
 }
@@ -93,6 +101,17 @@ export const deleteActivity = (id) => async (dispatch) => {
   return response;
 }
 
+export const resetResponses = (id) => async (dispatch) => {
+  const response = await csrfFetch(`/api/activities/reset/${id}`, {
+    "method": "DELETE",
+  })
+  const data = await response.json();
+  if (response.ok) {
+    dispatch(clearResponses())
+  }
+  return response;
+}
+
 // possible initial state
 
 // Reducer
@@ -109,8 +128,7 @@ const activityReducer = (state = initialState, action) => {
       const newState = {...state};
       console.log('action payload dot id', action.payload)
       delete newState[action.payload]
-      return {...newState}
-
+      return {...newState};
     default:
       return state;
   }
