@@ -112,6 +112,7 @@ const ActivityShow = () => {
     <div className="activity-show-wrapper">
       <div className="activity-show-flex">
         <h1>Activity Show</h1>
+        <button>Pretend Clear All Responses</button>
         <Link to="/dashboard"><button className="activity-show-button">back</button></Link>
       </div>
       <ul>

@@ -1,23 +1,14 @@
-Locus-Pocus
-# Background
+[Locus Pocus](https://locus-pocus.onrender.com/) is clone of [Poll Everywhere](https://www.polleverywhere.com/), a live online polling platform.
+
+The inspiration for this project came from my desire to start making low or no code tools and a feeling of isolation when watching online lectures. I wanted to create a tool that would make the sharing of knowledge feel as magical online as it does in a small liberal arts class.
+
+## Discussion of Select Features
+
+### Questions with a variable number of response options
+
+Enjoyable presentations have varied content, so it was necessary to create a data structure for 'activities' (the basic building block provided to users, where each one represents an entire block of content that can be sent to users) that could account for this while maintaining a normalized database and because I was using React, that could create and destroy different controlled inputs at the user's direction without a page refresh. Prior to this project, I had never worked with user input that could vary so dramatically, so I had a number of questions about how I would implement this -- and I wasn't even sure 
 
 
-## Technologies
-
-1. React (html, css, and javascript)
-2. Rails with Action Cable (ruby)
-3. Redis (for Action Cable)
-4. PostgreSQL 
-
-## Selected Features and Development
-  
-### Dynamic Forms
+PostgreSQL only allowed JSON data types in 2012 [REFERENCE](https://arctype.com/blog/json-database-when-use/),
 
 ### Web Sockets
-
-### General Developement Workflow
-
-I tried two different development workflows while making this project. In the first, which was far less productive, I tried to finish a single file before moving on to the next based on the idea that I should finish a feature before moving on, but I had a hard time judging completion and testing.  In the second, which was far more productive, I focused on pushing a single user path forward at a time, making contributions across files in the order they were needed in order to process a request. 
-
-In both workflows, I tried to push single features forward at a time, which I think was the right choice, but because I wasn't comfortable enough to finish an entire file at once, I struggled to constructively iterate. You live and you learn! Once I made the adjustment to how I worked during this project, the amount of progress I was able to make day by day increased exponentially. 
-

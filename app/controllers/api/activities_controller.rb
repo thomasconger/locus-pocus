@@ -43,6 +43,10 @@ class Api::ActivitiesController < ApplicationController
     end
   end
 
+  def clear
+    render json: { "message": "Testing custom controller action" }
+  end
+
   private
 
   def activity_params
