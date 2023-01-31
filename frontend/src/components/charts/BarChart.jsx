@@ -23,6 +23,10 @@ const draw = () => {
                       .domain([0, d3.max(data)])
                       .range([0, height-100]);
 
+  const xScale = d3.scaleBand()
+    .domain(["test", "new"])
+    .range([0, 500])
+
   selection
       .transition().duration(300)
           .attr("height", (d) => yScale(d))
@@ -39,6 +43,11 @@ const draw = () => {
       .transition().duration(300)
           .attr("height", (d) => yScale(d))
           .attr("y", (d) => height - yScale(d))
+
+  selection.append('g')
+    .attr('class', 'x-axis')
+    .call(d3.axisBottom(xScale))
+    .selectAll(".tick text")
 
   selection
       .exit()
