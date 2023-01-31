@@ -5,6 +5,7 @@ import { Link, Redirect, useParams } from 'react-router-dom'
 import { fetchActivity, deleteActivity, updateActivity, resetResponses } from '../store/activities';
 import { clearResponses, fetchResponses, receiveResponse } from '../store/responses';
 import consumer from '../consumer';
+import BarChart from './charts/BarChart';
 
 
 
@@ -25,6 +26,36 @@ const ActivityShow = () => {
   const [formOptions, setFormOptions] = useState({});
   const [prompt, setPrompt] = useState("");
   const [shouldRedirect, setShouldRedirect] = useState(false)
+
+
+
+  console.log('responses', responses)
+  // responses = object of objects
+  // body contains response
+
+  const transformed = Object.values(responses)?.reduce((acc, cv) => {
+    // index into acc with body of cv
+    // if it exists, increment value by 1, else set to 1
+    // return
+
+    // if (acc[cv.body]) {
+    //   acc[cv.body] += 1;
+    // } else {
+    //   acc[cv.body] = 1
+    // }
+    // console.log(cv)
+    if (acc[cv.body]) {
+      acc[cv.body] += 1
+    } else {
+      acc[cv.body] = 1
+    }
+    return acc
+  }, {})
+
+  console.log('transformed', transformed)
+
+  const data = [1,5,10]
+
 
 
   useEffect(()=>{
@@ -117,7 +148,7 @@ const ActivityShow = () => {
     <div className="activity-show-wrapper">
       <div className="activity-show-flex">
         <h1>Activity Show</h1>
-        <button onClick={handleClear}>Pretend Clear All Responses</button>
+        <button onClick={handleClear}> Clear this activity's responses</button>
         <Link to="/dashboard"><button className="activity-show-button">back</button></Link>
       </div>
       <ul>
@@ -146,6 +177,7 @@ const ActivityShow = () => {
     </div>
     <div className="responses-index-wrapper">
     {/* .filter((response)=>(response.activityId == params.id)). */}
+     <BarChart width="600" height="600" data={data}></BarChart>
       <h2 className="response-serif"> Edit your activity's responses by clicking on each link → </h2>
       { responses ?
         Object.values(responses).map((response)=>{
