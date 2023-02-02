@@ -29,7 +29,7 @@ const ActivityShow = () => {
 
 
 
-  console.log('responses', responses)
+
   // responses = object of objects
   // body contains response
 
@@ -38,12 +38,7 @@ const ActivityShow = () => {
     // if it exists, increment value by 1, else set to 1
     // return
 
-    // if (acc[cv.body]) {
-    //   acc[cv.body] += 1;
-    // } else {
-    //   acc[cv.body] = 1
-    // }
-    // console.log(cv)
+
     if (acc[cv.body]) {
       acc[cv.body] += 1
     } else {
@@ -54,8 +49,36 @@ const ActivityShow = () => {
 
   console.log('transformed', transformed)
 
-  const data = [1,5,10]
+  // const data = [
+  //   {
+  //     name: "A",
+  //     count: 10
+  //   },
+  //   {
+  //     name: "B",
+  //     count: 5
+  //   },
+  //   {
+  //     name: "Wow, this is great!",
+  //     count: 3
+  //   },
+  //   {
+  //     name: "D",
+  //     count: 20
+  //   }
+  // ]
 
+
+  const data = Object.values(Object.values(responses).reduce((acc, response) => {
+    console.log('response', response)
+    if (acc[response.body]) {
+      acc[response.body].count = acc[response.body].count + 1
+      return acc
+    } else {
+      acc[response.body] = {name: response.body, count: 0}
+      return acc
+    }
+  }, {}))
 
 
   useEffect(()=>{
