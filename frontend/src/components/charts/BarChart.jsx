@@ -3,7 +3,8 @@ import React, { useRef, useEffect } from 'react';
 
 function BarChart({width, height, data}) {
 
-  console.log('data', data)
+  // need to get this to redraw on change of data
+  console.log('bar chart re render')
 
   const ref = useRef();
 
@@ -17,10 +18,11 @@ function BarChart({width, height, data}) {
 
   useEffect(() => {
     draw();
-  }, [data.length]);
+  }, [data]);
 
 const draw = () => {
 
+  // must recaclulate max
   const max = 10
 
   const adjHeight = height - 100
@@ -74,6 +76,7 @@ const draw = () => {
 return (
   <div className="chart">
       <svg ref={ref}>
+
       </svg>
   </div>
 

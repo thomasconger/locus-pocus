@@ -17,6 +17,7 @@ const ActivityShow = () => {
   let params = useParams();
   let activity = useSelector((state) => state.activities[params.id])
   let responses = useSelector((state) => (state.responses))
+  const responseCount = responses.length;
   const sessionUser = useSelector(state => state.session.user);
   const [errors, setErrors] = useState([])
   const [success, setSuccess] = useState([])
@@ -47,7 +48,7 @@ const ActivityShow = () => {
     return acc
   }, {})
 
-  console.log('transformed', transformed)
+
 
   // const data = [
   //   {
@@ -69,16 +70,18 @@ const ActivityShow = () => {
   // ]
 
 
+
   const data = Object.values(Object.values(responses).reduce((acc, response) => {
     console.log('response', response)
     if (acc[response.body]) {
       acc[response.body].count = acc[response.body].count + 1
       return acc
     } else {
-      acc[response.body] = {name: response.body, count: 0}
+      acc[response.body] = {name: response.body, count: 1}
       return acc
     }
   }, {}))
+
 
 
   useEffect(()=>{
@@ -97,6 +100,7 @@ const ActivityShow = () => {
         received: response => {
           console.log("You've received data!")
           dispatch(receiveResponse(response))
+
 
         }
       }
