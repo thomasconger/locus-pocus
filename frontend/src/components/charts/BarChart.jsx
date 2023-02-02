@@ -6,35 +6,38 @@ function BarChart({width, height, data}) {
   // need to get this to redraw on change of data
   console.log('bar chart re render')
 
-  const ref = useRef();
+  const ref = useRef(null);
+
+
+
+  useEffect(() => {
+    const max = data.reduce((acc,ele)=>{
+      if (acc > ele.count) {
+        return acc
+      }
+      return ele.count
+    }, 5) + 5
+
+    // data is an array of objects, where d.count gets val
+
+    console.log('data', data)
+
+    const adjHeight = height - 100
+    const adjWidth = width - 100
+
+
 
   const svg = d3.select(ref.current)
-    .attr("width", width)
+
+  svg.selectAll('rect').remove()
+  svg.selectAll('g').remove()
+
+  svg.attr("width", width)
     .attr("height", height)
     .attr('margin-left', '50px' )
     .attr('padding-left', '20px')
     .style("border", "1px solid black")
     .attr('viewBox', `-100 -100 ${width * 1.1} ${height * 1.1}`)
-
-  useEffect(() => {
-    draw();
-  }, [data]);
-
-const draw = () => {
-
-  // must recaclulate max
-  const max = 10
-
-  const adjHeight = height - 100
-  const adjWidth = width - 100
-
-  // const max = data.reduce((max, item) => {
-  //   if (max > item.count) {
-  //     return max
-  //   } else {
-  //     return item.count
-  //   }
-  // }, 10)
 
   const x = d3.scaleBand()
     .range([0,adjWidth])
@@ -67,7 +70,15 @@ const draw = () => {
         return adjHeight - y(d.count); } )
       .attr("fill", "#69b3a2")
 
+    console.log('data',data)
 
+
+
+  });
+
+const draw = () => {
+
+  // must recaclulate max
 
 
 
