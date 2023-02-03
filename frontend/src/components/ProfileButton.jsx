@@ -2,6 +2,7 @@ import { Redirect, useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
 import * as sessionActions from '../store/session';
+import thomasConger from '../assets/thomas-conger.jpg'
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -32,9 +33,8 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button onClick={openMenu}>
-        <i className="fa-solid fa-user-circle" />
-      </button>
+      <img className='tiny-profile' src={thomasConger} onClick={openMenu}/>
+
       {showMenu && (
         <ul className="profile-dropdown">
           <li>{user.username}</li>

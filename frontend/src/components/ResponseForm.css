@@ -2,6 +2,7 @@
   width: 750px;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 10vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -11,7 +12,6 @@
   border-radius: 10px;
 
 }
- /* padding:  */
 
 .response-card {
   border-radius: 10px;
@@ -31,8 +31,6 @@
   line-height: 1.5;
   margin-left: 25px;
 }
-
-/* background: linear-gradient(280.97deg,#c5ecfe,#298aff 50.81%,#eeb7e7); */
 
 .response-form {
   display: flex;
@@ -58,15 +56,7 @@
   color: black;
 }
 
-.navbar {
-  background-color: black;
-}
-
-.nav-logo {
-  color: lightgray;
-}
-
-/* input[type="radio"] {
+input[type="radio"] {
   appearance: none;
   background-color: #fff;
   margin: 0;
@@ -90,4 +80,4 @@ input[type="radio"]::before {
 
 input[type="radio"]:checked::before {
   transform: scale(1);
-} */
+}
