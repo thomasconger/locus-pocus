@@ -33,7 +33,7 @@ function Navigation() {
         <NavLink  exact to="/">Locus Pocus</NavLink>
       </div>
       <ul className="navigation">
-
+        <button className="cta">Hire the developer!</button>
         {sessionLinks}
       </ul>
     </nav>

@@ -48,29 +48,6 @@ const ActivityShow = () => {
     return acc
   }, {})
 
-
-
-  // const data = [
-  //   {
-  //     name: "A",
-  //     count: 10
-  //   },
-  //   {
-  //     name: "B",
-  //     count: 5
-  //   },
-  //   {
-  //     name: "Wow, this is great!",
-  //     count: 3
-  //   },
-  //   {
-  //     name: "D",
-  //     count: 20
-  //   }
-  // ]
-
-
-
   const data = Object.values(Object.values(responses).reduce((acc, response) => {
     console.log('response', response)
     if (acc[response.body]) {

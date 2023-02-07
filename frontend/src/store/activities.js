@@ -80,6 +80,7 @@ export const fetchActivities = ( userId ) => async (dispatch) => {
   return response;
 }
 
+// be mindful of fetch Activity vs fetch Activities. 
 export const fetchActivity = (id) => async (dispatch) => {
   const response = await csrfFetch(`/api/activities/${id}`)
   const data = await response.json();

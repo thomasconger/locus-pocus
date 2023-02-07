@@ -30,7 +30,7 @@
 .activity-index-headers {
   position: relative;
   display: grid;
-  grid-template-columns: 1fr 8fr 1fr;
+  grid-template-columns: 1fr 7fr 1fr 1fr;
   color: gray;
   font-weight: 200;
   align-content: center;
@@ -41,7 +41,7 @@
 
 .activity-index-item {
   display: grid;
-  grid-template-columns: 1fr 8fr 1fr;
+  grid-template-columns: 1fr 7fr 1fr 1fr;
   align-content: center;
   background-color: white;
   border-radius: 20px;
@@ -177,3 +177,17 @@
 .title-and-share {
   display: block;
 }
+
+.activity-dropdown {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  background-color: var(--nuetral-100);
+  border-radius: 10px;
+  border: 1px solid;
+  z-index: 250;
+  border-radius: 10px;
+  border: 1px solid #efefef;
+  box-shadow: rgb(0 0 0 / 8%) 0px 2px 2px, rgb(0 0 0 / 6%) 0px 2px 8px;
+}
+
