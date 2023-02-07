@@ -42,7 +42,8 @@
 .activity-index-item {
   display: grid;
   grid-template-columns: 1fr 7fr 1fr 1fr;
-  align-content: center;
+  align-items: center;
+  justify-content: center;
   background-color: white;
   border-radius: 20px;
   margin: 20px 0px;
@@ -180,8 +181,6 @@
 
 .activity-dropdown {
   position: absolute;
-  width: 150px;
-  height: 150px;
   background-color: var(--nuetral-100);
   border-radius: 10px;
   border: 1px solid;
@@ -190,4 +189,3 @@
   border: 1px solid #efefef;
   box-shadow: rgb(0 0 0 / 8%) 0px 2px 2px, rgb(0 0 0 / 6%) 0px 2px 8px;
 }
-

@@ -115,7 +115,7 @@ button.cta:hover {
 }
 
 button.passive {
-	background-color: var(--nuetral-300);
+	background-color: rgba(0,0,0,0);
 	color: var(--nuetral-700);
 }
 
