@@ -6,8 +6,11 @@ Rails.application.routes.draw do
 
   # post 'api/test', to: 'application#test'
 
+  #Need to create route to clear all responses for a given activity
+
   namespace :api, defaults: { format: :json } do
     resources :users, only: [:create, :show, :update]
+    delete 'activities/reset/(/:id)', to: 'activities#reset'
     resources :activities, only: [:create, :index, :show, :update, :destroy]
     resources :responses, only: [:create, :index, :show, :update, :destroy]
     resource :session, only: [:show, :create, :destroy]

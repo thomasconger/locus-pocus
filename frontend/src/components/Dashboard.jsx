@@ -10,7 +10,7 @@ import ModalService from "./ModalService";
 import ActivityModal from "./ActivityModal";
 import ActivityIndexItem from "./ActivityIndexItem";
 import { fetchActivities } from "../store/activities";
-
+import { IoPersonAdd, IoAdd } from 'react-icons/io5'
 
 function Dashboard() {
   const dispatch = useDispatch();
@@ -32,51 +32,44 @@ function Dashboard() {
 
   if (!sessionUser) return <Redirect to="/login" />;
 
+  function copyLink (e) {
+    const link = `https://locus-pocus.onrender.com/now-showing/${sessionUser.id}`
+    navigator.clipboard.writeText(link)
+  }
+
   return (
     <>
-      {/* <div className="live-indicator-grid">
-        <div className="live-status-icon-flexbox">
-          <i className="fa-solid fa-tower-broadcast fa-3x"></i>
-        </div>
-        <p className="live-status">No live activities</p>
-        <p className="live-learn-more">Learn More</p>
-      </div> */}
-      <div className="toolbar-flexbox">
-        <h1 className="greeting">// HEY...<span className="greeting-subtext">HAVE A MAGICAL DAY 😊</span></h1>
-      </div>
       <div className="activity-grid">
         <div className="activity-toolbar">
-          <h2 className="activity-index-title">Activities Grid</h2>
-          <button onClick={ addModal } className="new-activity-button">New Activity</button>
+          <div className="title-and-share">
+            <h2 className="activity-index-title">My Workspace</h2>
+            <button className="passive" onClick={copyLink}> < IoPersonAdd /> Share</button>
+          </div>
+          {/* { IoPersonAdd } */}
+          <button onClick={ addModal } className="new-activity-button"> <IoAdd/> Create Activity</button>
         </div>
-        <div>
-          <p>To edit an activity or see its responses, click on its name!</p>
-          <br></br>
-          <a href={`/now-showing/${sessionUser?.id}`}>
-            <p>To get a link to share your live question and to collect responses, click here.</p>
-          </a>
-          <br></br>
 
 
-        </div>
         <div className="activity-index-headers">
           <div className="activity-index-header-centered">
             <h3 > Status </h3>
-            {/* <i className="fa-regular fa-square"></i> */}
           </div>
           <h3>Name</h3>
-          <h3 className="activity-index-header-centered" >Set Live</h3>
-          {/* <h3 className="activity-index-header-centered" >Responses</h3> */}
+          <h3 className="activity-index-header-centered" >Responses</h3>
         </div>
+
+        {
+          // ACTIVITY INDEX ITEMS
+        }
+
         {Object.values(activities).map((activity) => {
+          {console.log('activity number', activity.id)}
           return(
             <ActivityIndexItem
               key={activity.id}
               id={activity.id}
-              order={activity.order}
               prompt={activity.prompt}
-              modified={activity.updatedAt}
-              responses={activity.responses} />
+              />
           )
         })}
 

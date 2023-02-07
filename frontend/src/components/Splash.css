@@ -35,3 +35,18 @@
   width: clamp(200px, 60%, 1000px);
   margin-top: 10%;
 }
+
+
+.about-links-wrapper {
+  margin-top: 50px;
+  width: 250px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+}
+
+.about-links-wrapper a {
+  color: #fff;
+  text-decoration: none;
+}

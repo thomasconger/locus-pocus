@@ -6,11 +6,9 @@
   margin-right: auto;
   margin-bottom: 100px;
   margin-top: 20px;
-  display: grid;
-  grid-template-rows: auto 50px 50px;
-  grid-auto-rows: minmax(50px, auto);
+  display: block;
   font-family: sans-serif;
-  background-color: white;
+  background-color: #FAFAFA;
   color: black;
   border-radius: 10px;
   padding: 30px;
@@ -26,22 +24,30 @@
 .activity-index-title {
   font-size: 28px;
   font-weight: 600;
-  align-self: center;
+  display: inline;
 }
 
 .activity-index-headers {
+  position: relative;
   display: grid;
-  grid-template-columns: 1fr 8fr 1fr;
+  grid-template-columns: 1fr 7fr 1fr 1fr;
   color: gray;
-  font-weight: 600;
+  font-weight: 200;
   align-content: center;
+  border-top: 1.5px solid #E8E8E8;
+  box-sizing: border-box;
+  padding-top: 15px;
 }
 
 .activity-index-item {
   display: grid;
-  grid-template-columns: 1fr 8fr 1fr;
-  border-top: solid #efefef;
+  grid-template-columns: 1fr 7fr 1fr 1fr;
   align-content: center;
+  background-color: white;
+  border-radius: 20px;
+  margin: 20px 0px;
+  padding: 30px 0px;
+  box-shadow: rgb(0 0 0 / 8%) 0px 2px 2px, rgb(0 0 0 / 6%) 0px 2px 8px;
 }
 
 .activity-prompt {
@@ -146,25 +152,11 @@
 }
 
 .new-activity-button {
-  background-color: whitesmoke;
-  border-color: whitesmoke;
-  font-size: 18px;
-  border-radius: 10px;
-  padding: 10px;
+  margin-top: 20px;
 }
 
-.new-activity-button:hover {
-  background-color: black;
-  color: white;
-  font-size: 18px;
-  border-radius: 10px;
-  padding: 10px;
-}
 
 .activity-toolbar {
-  display: flex;
-  justify-content: space-between;
-  align-content: center;
   margin-bottom: 5vh;
 }
 
@@ -179,3 +171,23 @@
 .greeting-subtext {
   font-size: 12px;
 }
+
+
+
+.title-and-share {
+  display: block;
+}
+
+.activity-dropdown {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  background-color: var(--nuetral-100);
+  border-radius: 10px;
+  border: 1px solid;
+  z-index: 250;
+  border-radius: 10px;
+  border: 1px solid #efefef;
+  box-shadow: rgb(0 0 0 / 8%) 0px 2px 2px, rgb(0 0 0 / 6%) 0px 2px 8px;
+}
+

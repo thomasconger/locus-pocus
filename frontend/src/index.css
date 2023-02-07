@@ -47,6 +47,92 @@ table {
 	border-spacing: 0;
 }
 
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+/* CUSTOM */
+
+/* VARIABLES */
+
+:root {
+	--nuetral-100: #FFFFFF;
+	--nuetral-300: #FAFAFA;
+	--nuetral-400: #F0F0F0;
+	--nuetral-500: #E3E3E3;
+	--nuetral-700: #808080;
+	--nuetral-900: #898989;
+	--primary-300: #474747;
+	--primary-500: #262627;
+	--secondary-100: #A9C4BD;
+	--secondary-300: #297B6C;
+	--secondary-500: #036451;
+	--tertiary-500: #B41E1B;
+
+}
+
+/* COMPONENT STYLING */
+
 .success {
 	color: green;
+}
+
+body {
+  background-color: #FAFAFA;
+  color: black;
+  font-family: sans-serif;
+}
+
+/* BUTTON STYLING
+
+		DEFAULT: 		primary-500 with white text.
+		SECONDARY:	---- figure this out. gray.
+		PASSIVE: 		nuetral-300 background color with nuetral-700 text
+		ACTIVE: 		---- figure this out. green.
+
+*/
+
+button {
+	background-color: #262627;
+  color: white;
+  border: none;
+  font-size: 18px;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+button:hover {
+	background-color: #474747;
+}
+
+button.cta {
+	background-color: var(--secondary-500)
+}
+
+button.cta:hover {
+	background-color: var(--secondary-300);
+}
+
+button.passive {
+	background-color: var(--nuetral-300);
+	color: var(--nuetral-700);
+}
+
+button.passive:hover {
+	background-color: var(--nuetral-500)
+}
+
+/* Profile Icons */
+
+.tiny-profile {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+/* Text Affordances */
+
+.attention {
+	color: var(--tertiary-500)
 }

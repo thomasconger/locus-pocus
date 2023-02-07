@@ -43,6 +43,15 @@ class Api::ActivitiesController < ApplicationController
     end
   end
 
+  def reset
+    @activity = Activity.find(params[:id])
+    if @activity&.responses.destroy_all
+      render json: { "message": "All responses for this activity have been destroyed."}
+    else
+      render json: { "message": "An error occured while deleting related responses." }
+    end
+  end
+
   private
 
   def activity_params
