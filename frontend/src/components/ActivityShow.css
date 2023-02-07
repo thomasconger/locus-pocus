@@ -137,3 +137,20 @@
   border-radius: 10px;
   padding: 10px;
 }
+
+
+.activity-toggle {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.activity-toggle p {
+  padding: 10px;
+  border-bottom: solid 5px var(--nuetral-100);
+}
+
+.activity-toggle p.active {
+  border-bottom: solid 5px var(--nuetral-500);
+}

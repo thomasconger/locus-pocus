@@ -6,6 +6,7 @@ import { fetchActivity, deleteActivity, updateActivity, resetResponses } from '.
 import { clearResponses, fetchResponses, receiveResponse } from '../store/responses';
 import consumer from '../consumer';
 import BarChart from './charts/BarChart';
+import { IoClose, IoArrowBack, IoEllipsisHorizontal } from "react-icons/io5";
 
 
 
@@ -21,6 +22,7 @@ const ActivityShow = () => {
   const sessionUser = useSelector(state => state.session.user);
   const [errors, setErrors] = useState([])
   const [success, setSuccess] = useState([])
+  const [display, setDisplay] = useState('question')
 
   // responses = Object.values(responses).filter((response)=>(response.activityId == params.id))
 
@@ -142,18 +144,23 @@ const ActivityShow = () => {
     console.log(success)
   }
 
-  // if (shouldRedirect) {
-  //   redirect
-  // }
+
 
   return (
     <>
     {shouldRedirect && redirect }
     <div className="activity-show-wrapper">
       <div className="activity-show-flex">
-        <h1>Activity Show</h1>
-        <button onClick={handleClear}> Clear this activity's responses</button>
-        <Link to="/dashboard"><button className="activity-show-button">back</button></Link>
+        <Link to="/dashboard"><button className="passive close"><IoArrowBack/></button></Link>
+        <div className="activity-toggle">
+          <p className={display === "question" ? 'active' : ''}
+              onClick={e=>setDisplay('question')}
+          >Question</p>
+          <p className={display === "responses" ? 'active' : ''}
+            onClick={e=>setDisplay('responses')}
+          >Responses</p>
+        </div>
+        <button className="passive close"><IoEllipsisHorizontal/></button>
       </div>
       <ul>
           {errors.map(error => <li className="login-error-item" key={error}>{error}</li>)}
@@ -163,36 +170,41 @@ const ActivityShow = () => {
       </ul>
       <br></br>
 
-      <form className="activity-show-edit" >
-        <input className="activity-show-prompt" value={prompt} onChange={(e)=> setPrompt(e.target.value)} />
-        {
-          options?.map((option, i)=>{return (
-          <div className="activity-show-option-wrapper">
-            <input className="activity-show-option" key={i} value={formOptions?.[`option${i+1}`]} onChange={(e)=>{handleFormChange(e, i)}}/>
-          </div>
-          )})
-        }
-        <div className="activity-show-button-row">
-          <button className="activity-show-button" onClick={handleDelete}>Delete</button>
-          <button className="activity-show-button-update" onClick={handleSubmit} >Update</button>
-        </div>
+      { display === 'question' && (
+            <form className="activity-show-edit" >
+            <input className="activity-show-prompt" value={prompt} onChange={(e)=> setPrompt(e.target.value)} />
+            {
+              options?.map((option, i)=>{return (
+              <div className="activity-show-option-wrapper">
+                <input className="activity-show-option" key={i} value={formOptions?.[`option${i+1}`]} onChange={(e)=>{handleFormChange(e, i)}}/>
+              </div>
+              )})
+            }
+            <div className="activity-show-button-row">
+              <button className="activity-show-button" onClick={handleDelete}>Delete</button>
+              <button className="cta" onClick={handleSubmit} >Publish</button>
+            </div>
+          </form>
+      )}
 
-      </form>
+      { display === 'responses' && (
+           <div className="responses-index-wrapper">
+            <BarChart width="600" height="600" data={data}></BarChart>
+             <h2 className="response-serif"> Edit your activity's responses by clicking on each link → </h2>
+             { responses ?
+               Object.values(responses).map((response)=>{
+                 return (<>
+                   {/* <p>{response.id}</p> */}
+                   <a href={`/response/${response.id}`} ><p className="responses">{response.body}</p></a>
+                   {/* <p>{response.createdAt}</p> */}
+                 </>)
+               })
+              : "" }
+           </div>
+      )}
+
     </div>
-    <div className="responses-index-wrapper">
-    {/* .filter((response)=>(response.activityId == params.id)). */}
-     <BarChart width="600" height="600" data={data}></BarChart>
-      <h2 className="response-serif"> Edit your activity's responses by clicking on each link → </h2>
-      { responses ?
-        Object.values(responses).map((response)=>{
-          return (<>
-            {/* <p>{response.id}</p> */}
-            <a href={`/response/${response.id}`} ><p className="responses">{response.body}</p></a>
-            {/* <p>{response.createdAt}</p> */}
-          </>)
-        })
-       : "" }
-    </div>
+
 
     </>
   )

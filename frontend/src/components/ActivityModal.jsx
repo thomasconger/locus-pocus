@@ -153,21 +153,17 @@ export default function ActivityModal(props) {
 
             </div>
             <div>
-              <button className="cta" onClick={handleSubmit}>Create new Activity</button>
+              <button className="cta" onClick={handleSubmit}>Create new activity</button>
             </div>
           </div>
       </form>
 
       </ModalBody>
       <ModalFooter>
-
-      <ul>
-          {errors?.map(error => <li className="login-error-item" key={error}>{error}</li>)}
-      </ul>
-      <br></br>
-      <ul>
-          {success?.map(success => <li className="success" key={success}>{success}</li>)}
-      </ul>
+        <ul className="user-messages">
+            {success?.map(success => <li className="success" key={success}>{success}</li>)}
+            {errors?.map(error => <li className="login-error-item" key={error}>{error}</li>)}
+        </ul>
 
       </ModalFooter>
     </Modal>
