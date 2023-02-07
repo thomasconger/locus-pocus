@@ -2,7 +2,7 @@ import './ActivityShow.css'
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, Redirect, useParams } from 'react-router-dom'
-import { fetchActivity, deleteActivity, updateActivity, resetResponses } from '../store/activities';
+import { fetchActivity, deleteActivity, updateActivity, resetResponses, removeActivity } from '../store/activities';
 import { clearResponses, fetchResponses, receiveResponse } from '../store/responses';
 import consumer from '../consumer';
 import BarChart from './charts/BarChart';
@@ -23,6 +23,9 @@ const ActivityShow = () => {
   const [errors, setErrors] = useState([])
   const [success, setSuccess] = useState([])
   const [display, setDisplay] = useState('question')
+  const [dropdown, setDropdown] = useState(false)
+
+  const {id} = { params }
 
   // responses = Object.values(responses).filter((response)=>(response.activityId == params.id))
 
@@ -160,7 +163,17 @@ const ActivityShow = () => {
             onClick={e=>setDisplay('responses')}
           >Responses</p>
         </div>
-        <button className="passive close"><IoEllipsisHorizontal/></button>
+        <button className="passive close" onClick={e=>setDropdown(!dropdown)}>
+          <IoEllipsisHorizontal/>
+          {dropdown && (<div className="activity-dropdown dropdown-section">
+              <ul>
+                <Link to={`./activity/${id}`}><li>View Responses</li></Link>
+                <Link to={`./activity/${id}`}><li>Edit Activity</li></Link>
+                <li onClick={clearResponses}>Reset Responses</li>
+                <li onClick={handleDelete} className="attention">Delete Activity</li>
+              </ul>
+            </div>)}
+        </button>
       </div>
       <ul>
           {errors.map(error => <li className="login-error-item" key={error}>{error}</li>)}
@@ -181,15 +194,15 @@ const ActivityShow = () => {
               )})
             }
             <div className="activity-show-button-row">
-              <button className="activity-show-button" onClick={handleDelete}>Delete</button>
+              <div>{/* {todo -- remove div and restyle } */}</div>
               <button className="cta" onClick={handleSubmit} >Publish</button>
             </div>
           </form>
       )}
 
       { display === 'responses' && (
-           <div className="responses-index-wrapper">
-            <BarChart width="600" height="600" data={data}></BarChart>
+           <div className="">
+            <BarChart width={750} height="600" data={data}></BarChart>
              <h2 className="response-serif"> Edit your activity's responses by clicking on each link → </h2>
              { responses ?
                Object.values(responses).map((response)=>{
