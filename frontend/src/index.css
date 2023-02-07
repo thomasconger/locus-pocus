@@ -98,8 +98,10 @@ button {
   color: white;
   border: none;
   font-size: 18px;
+	font-weight: 100;
   border-radius: 8px;
   padding: 10px;
+	
 }
 
 button:hover {
@@ -120,7 +122,11 @@ button.passive {
 }
 
 button.passive:hover {
-	background-color: var(--nuetral-500)
+	background-color: var(--nuetral-500);
+}
+
+button.close {
+	font-size: 30px;
 }
 
 /* Profile Icons */
