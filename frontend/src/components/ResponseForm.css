@@ -30,54 +30,58 @@
   font-size: 18px;
   line-height: 1.5;
   margin-left: 25px;
+  display: grid;
+  grid-template-columns: 1em auto;
+  gap: 0.5em;
 }
 
 .response-form {
-  display: flex;
-  flex-direction: column;
+  display: grid;
 
 }
 
 .response-form button {
-  background-color: black;
-  border-radius: 5px;
-  padding: 10px;
-  color: white;
   width: 150px;
-  font-size: 18px;
   margin-top: 25px;
   margin-left: auto;
   margin-right: auto;
 }
 
-.response-form button:hover {
-  background-color: whitesmoke;
-  border: whitesmoke;
-  color: black;
-}
+
+
 
 input[type="radio"] {
+  /* The following 4 lines hide default styling  */
+  -webkit-appearance: none;
   appearance: none;
-  background-color: #fff;
+  background-color: rgba(0,0,0,0);
   margin: 0;
-  font: 100%;
+  /* Custom styling of unchecked */
+  font: inherit;
   color: currentColor;
-  width: 1.15em;
-  height: 1.15em;
-  border: 0.15em solid currentColor;
+  width: 0.75em;
+  height: 0.75em;
+  border: 0.10em solid currentColor;
   border-radius: 50%;
+  transform: translateY(.35em);
+  /* spacing */
+  display: grid;
+  place-content: center;
 }
 
 input[type="radio"]::before {
   content: "";
-  width: 0.65em;
-  height: 0.65em;
+  width: .3em;
+  height: .3em;
   border-radius: 50%;
-  transform: scale(0);
-  transition: 120ms transform ease-in-out;
-  box-shadow: inset 1em 1em #000000;
+  /* background-color: var(--nuetral-500); */
+}
+
+input[type="radio"]:checked {
+  border: none;
+  border: 0.1em solid var(--secondary-300);
 }
 
 input[type="radio"]:checked::before {
-  transform: scale(1);
+  background-color: var(--secondary-300);
 }
