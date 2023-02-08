@@ -1,7 +1,7 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
-import { fetchActivity } from "../store/activities"
+import { deleteActivity, fetchActivity, resetResponses } from "../store/activities"
 import { updateUserActivity } from "../store/users"
 import { IoEllipsisHorizontal } from "react-icons/io5";
 
@@ -20,13 +20,8 @@ const ActivityIndexItem = ({prompt, id}) => {
   const userId = useSelector((state)=>(state.session.user.id))
   const user = useSelector((state)=>(state.session.user))
   const responses = useSelector(state => state.responses)
+  const [dropdown, setDropdown] = useState(false)
 
-  let dropdown;
-  if (id == 1) {
-    dropdown = true;
-  } else {
-    dropdown = false;
-  }
 
 
   const responsesForThisActivity = Object.values(responses).filter((response)=>{return response.activityId === id})
@@ -53,6 +48,14 @@ const ActivityIndexItem = ({prompt, id}) => {
   }
 
 
+  function clearResponses (e) {
+    dispatch(resetResponses(id))
+  }
+
+  function removeActivity (e) {
+    dispatch(deleteActivity(id));
+  }
+
 
   return (
     <div className="activity-index-item">
@@ -66,14 +69,15 @@ const ActivityIndexItem = ({prompt, id}) => {
               <p>{responsesForThisActivity.length}</p>
           </div>
           <div>
-            <button className="passive">
+            <button className="passive" onClick={e => setDropdown(!dropdown)}>
               <IoEllipsisHorizontal></IoEllipsisHorizontal>
             </button>
             {dropdown && (<div className="activity-dropdown dropdown-section">
               <ul>
-                <li>Edit Activity</li>
-                <li>Reset Responses</li>
-                <li className="attention">Delete Activity</li>
+                <Link to={`./activity/${id}`}><li>View Responses</li></Link>
+                <Link to={`./activity/${id}`}><li>Edit Activity</li></Link>
+                <li onClick={clearResponses}>Reset Responses</li>
+                <li onClick={removeActivity} className="attention">Delete Activity</li>
               </ul>
             </div>)}
           </div>

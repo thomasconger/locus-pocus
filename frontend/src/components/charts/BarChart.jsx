@@ -3,13 +3,9 @@ import React, { useRef, useEffect } from 'react';
 
 function BarChart({width, height, data}) {
 
-  // need to get this to redraw on change of data
-  console.log('bar chart re render')
-
   const ref = useRef(null);
 
-
-
+  // Sets Left Axis top value, starts at 10 and increases by 1 as needed
   useEffect(() => {
     const max = data.reduce((acc,ele)=>{
       if (acc > ele.count) {
@@ -18,12 +14,11 @@ function BarChart({width, height, data}) {
       return ele.count
     }, 5) + 5
 
-    // data is an array of objects, where d.count gets val
 
-    console.log('data', data)
 
-    const adjHeight = height - 100
-    const adjWidth = width - 100
+
+  const adjHeight = height - 100
+  const adjWidth = width - 100
 
 
 
@@ -36,7 +31,6 @@ function BarChart({width, height, data}) {
     .attr("height", height)
     .attr('margin-left', '50px' )
     .attr('padding-left', '20px')
-    .style("border", "1px solid black")
     .attr('viewBox', `-100 -100 ${width * 1.1} ${height * 1.1}`)
 
   const x = d3.scaleBand()
@@ -48,7 +42,8 @@ function BarChart({width, height, data}) {
     .attr("transform", "translate(0," + adjHeight + ")")
     .call(d3.axisBottom(x))
     .selectAll('text')
-    .attr("transform", "translate(0,0)")
+    .attr('width', '10px')
+    .attr("transform", "translate(0,0) rotate(-10)")
     .style("text-anchor", "end");
 
   const y = d3.scaleLinear()
@@ -70,19 +65,7 @@ function BarChart({width, height, data}) {
         return adjHeight - y(d.count); } )
       .attr("fill", "#69b3a2")
 
-    console.log('data',data)
-
-
-
   });
-
-const draw = () => {
-
-  // must recaclulate max
-
-
-
-}
 
 return (
   <div className="chart">

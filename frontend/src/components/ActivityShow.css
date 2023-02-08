@@ -3,6 +3,7 @@
   margin-left: auto;
   margin-right: auto;
   margin-top: 100px;
+  margin-bottom: 100px;
   font-family: sans-serif;
   padding: 50px;
   background-color: white;
@@ -78,7 +79,7 @@
   font-weight: 600;
   grid-column-start: 1;
   grid-column-end: 3;
-  margin-bottom: 100px;
+  margin: 100px 0px;
 }
 
 .responses {
@@ -136,4 +137,49 @@
   font-size: 12px;
   border-radius: 10px;
   padding: 10px;
+}
+
+
+.activity-toggle {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.activity-toggle p {
+  padding: 10px;
+  border-bottom: solid 5px var(--nuetral-100);
+}
+
+.activity-toggle p:hover {
+  cursor: pointer;
+}
+
+.activity-toggle p.active {
+  border-bottom: solid 5px var(--nuetral-500);
+}
+
+.activity-dropdown {
+  color: black;
+  font-weight: 100;
+  width: auto;
+}
+
+.activity-dropdown.dropdown-section {
+  transform: translate(-200px,0px);
+}
+
+.activity-dropdown li {
+  padding: 10px 50px 0 10;
+  margin: none;
+  text-align: left;
+  font-weight: 100;
+  font-size: 18px;
+}
+
+.activity-dropdown a {
+  padding: none;
+  margin: none;
+  font-weight: 100;
 }

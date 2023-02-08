@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createActivity} from "../store/activities";
 import './ActivityModal.css'
+import { IoClose, IoAdd, IoRemove } from "react-icons/io5";
 
 export default function ActivityModal(props) {
 
@@ -84,12 +85,32 @@ export default function ActivityModal(props) {
 
   const removeOption = (e) => {
     e.preventDefault();
-    setOptionCount(optionCount -1)
+    setOptionCount(optionCount - 1)
     const revisedActivity = newActivity
     delete revisedActivity[`option${optionCount -1}`]
     setNewActivity(revisedActivity)
 
   }
+
+
+
+  // controls whether option button displays
+  let enoughOptions;
+  let displayAdd = true;
+
+    console.log('option count', optionCount)
+    if (optionCount > 2) {
+      enoughOptions = true;
+    }
+    if (optionCount > 8){
+      enoughOptions = true;
+      displayAdd = false;
+    }
+
+
+
+
+
 
   return (
     <Modal>
@@ -102,7 +123,7 @@ export default function ActivityModal(props) {
             <br></br>
 
           </div>
-          <button className="within-activity-modal-button-cancel" onClick={ props.close } >CANCEL</button>
+          <button className="passive close" onClick={ props.close } ><IoClose/></button>
         </div>
       </ModalHeader>
       <ModalBody>
@@ -116,25 +137,33 @@ export default function ActivityModal(props) {
         })}
           <div className="button-row">
             <div>
-              <button className="within-activity-modal-button" onClick={addOption}>ADD </button>
-              <button className="within-activity-modal-button" onClick={removeOption}>SUBTRACT </button>
+              { displayAdd && ( <button
+                className="passive"
+                onClick={addOption}>
+                  <IoAdd /> Add option
+              </button>)
+              }
+
+              { enoughOptions && (<button
+                className="passive"
+                onClick={removeOption}>
+                  <IoRemove /> Remove option
+              </button>)
+              }
+
             </div>
             <div>
-              <button className="within-activity-modal-button-submit" onClick={handleSubmit}>SUBMIT</button>
+              <button className="cta" onClick={handleSubmit}>Create new activity</button>
             </div>
           </div>
       </form>
 
       </ModalBody>
       <ModalFooter>
-
-      <ul>
-          {errors?.map(error => <li className="login-error-item" key={error}>{error}</li>)}
-      </ul>
-      <br></br>
-      <ul>
-          {success?.map(success => <li className="success" key={success}>{success}</li>)}
-      </ul>
+        <ul className="user-messages">
+            {success?.map(success => <li className="success" key={success}>{success}</li>)}
+            {errors?.map(error => <li className="login-error-item" key={error}>{error}</li>)}
+        </ul>
 
       </ModalFooter>
     </Modal>
