@@ -152,6 +152,29 @@
   border-bottom: solid 5px var(--nuetral-100);
 }
 
+.activity-toggle p:hover {
+  cursor: pointer;
+}
+
 .activity-toggle p.active {
   border-bottom: solid 5px var(--nuetral-500);
+}
+
+.activity-dropdown {
+  color: black;
+  font-weight: 100;
+}
+
+.activity-dropdown li {
+  padding: none;
+  margin: none;
+  text-align: left;
+  font-weight: 100;
+  font-size: 18px;
+}
+
+.activity-dropdown a {
+  padding: none;
+  margin: none;
+  font-weight: 100;
 }

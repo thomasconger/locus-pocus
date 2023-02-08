@@ -54,7 +54,6 @@ const ActivityShow = () => {
   }, {})
 
   const data = Object.values(Object.values(responses).reduce((acc, response) => {
-    console.log('response', response)
     if (acc[response.body]) {
       acc[response.body].count = acc[response.body].count + 1
       return acc
@@ -63,6 +62,8 @@ const ActivityShow = () => {
       return acc
     }
   }, {}))
+
+  const showResponses = (data.length > 0)
 
 
 
@@ -202,7 +203,8 @@ const ActivityShow = () => {
 
       { display === 'responses' && (
            <div className="">
-            <BarChart width={750} height="600" data={data}></BarChart>
+            {showResponses && (<>
+              <BarChart width={750} height="600" data={data}></BarChart>
              <h2 className="response-serif"> Edit your activity's responses by clicking on each link → </h2>
              { responses ?
                Object.values(responses).map((response)=>{
@@ -213,6 +215,15 @@ const ActivityShow = () => {
                  </>)
                })
               : "" }
+            </>
+            )}
+
+            {!showResponses && (
+              <>
+                <p className="centered-text">You currently have no responses.</p>
+              </>
+            )}
+
            </div>
       )}
 
