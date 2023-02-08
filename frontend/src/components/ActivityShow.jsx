@@ -148,6 +148,15 @@ const ActivityShow = () => {
     console.log(success)
   }
 
+  function displayActivity(e) {
+    e.preventDefault();
+    setDisplay('question')
+  }
+
+  function displayResponses(e) {
+    e.preventDefault();
+    setDisplay('responses')
+  }
 
 
   return (
@@ -168,8 +177,8 @@ const ActivityShow = () => {
           <IoEllipsisHorizontal/>
           {dropdown && (<div className="activity-dropdown dropdown-section">
               <ul>
-                <Link to={`./activity/${id}`}><li>View Responses</li></Link>
-                <Link to={`./activity/${id}`}><li>Edit Activity</li></Link>
+                <li onClick={displayActivity}>Edit Activity</li>
+                <li onClick={displayResponses}>View Responses</li>
                 <li onClick={clearResponses}>Reset Responses</li>
                 <li onClick={handleDelete} className="attention">Delete Activity</li>
               </ul>
