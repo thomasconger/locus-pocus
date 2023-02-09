@@ -8,7 +8,9 @@ class UserChannel < ApplicationCable::Channel
   def subscribed
     # stream_from (dynamic) or stream_for (static)
     # this method is called when a user subscribes to the channel
-    
+    puts 'broadcasting to:'
+    x = User.find_by(id: params[:id])
+    puts x
     stream_for User.find_by(id: params[:id])
   end
 end

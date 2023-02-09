@@ -3,8 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { fetchActivity } from '../store/activities';
 import { createResponse } from '../store/responses';
-import { fetchUser, fetchUserLiveActivity } from '../store/users';
+import { fetchUser, fetchUserLiveActivity, receiveUser } from '../store/users';
 import './LiveForm.css'
+import consumer from '../consumer';
 
 
 
@@ -16,11 +17,43 @@ const LiveForm = () => {
   const activity = useSelector((state)=>state.activities[user?.liveActivityId])
   const [choice, setChoice] = useState();
   const [display, setDisplay] = useState(true)
+  const params = useParams();
 
 
+  // HTTP REQUEST ON MOUNT TO GRAB ID
   useEffect((e)=>{
     dispatch(fetchUserLiveActivity(userId));
   }, [])
+
+  // Web Sockets -- copied code
+  useEffect(()=>{
+
+    console.log('params.id', params)
+
+    // NEED A USER SUBSCRIPTION
+    const subscription  = consumer.subscriptions.create(
+      { channel: 'UserChannel', id: params.userId},
+      {
+        connected: () => {
+          console.log("Connected!")
+        },
+        received: user => {
+          console.log("/now-showing has received:", user)
+          dispatch(receiveUser(user))
+          setDisplay(true)
+          dispatch(fetchUserLiveActivity(user.id))
+
+        }
+      }
+      )
+      return () => subscription?.unsubscribe();
+    },[ ])
+
+    // useEffect(()=>{
+    //   dispatch(fetchActivity(params.id));
+    //   // dispatch(fetchResponses(params.id));
+    //   return () => dispatch(clearResponses());
+    // },[dispatch, params.id])
 
   const handleSubmit = (e) => {
     e.preventDefault();
