@@ -71,7 +71,6 @@ function Dashboard() {
         }
 
         {Object.values(activities).map((activity) => {
-          {console.log('activity number', activity.id)}
           return(
             <ActivityIndexItem
               key={activity.id}

@@ -55,7 +55,6 @@ export const fetchResponses = (id) => async (dispatch) => {
 }
 
 export const fetchResponse = (id) => async (dispatch) => {
-  console.log("In fetch response")
   const response = await csrfFetch(`/api/responses/${id}`)
   const data = await response.json();
   if (response.ok) {
@@ -64,7 +63,6 @@ export const fetchResponse = (id) => async (dispatch) => {
 }
 
 export const deleteResponse = (id) => async (dispatch) => {
-  console.log("in delete response")
   const response = await csrfFetch(`/api/responses/${id}`, {
     "method": "DELETE",
   })
@@ -75,7 +73,6 @@ export const deleteResponse = (id) => async (dispatch) => {
 }
 
 export const updateResponse = (id, response) => async (dispatch) => {
-  console.log("in update response")
   const res = await csrfFetch(`/api/responses/${id}`,{
     method: 'PATCH',
     body: JSON.stringify(response)

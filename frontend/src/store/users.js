@@ -20,7 +20,6 @@ export const receiveUser = (user) => {
 export const fetchUser = (userId) => async (dispatch) => {
   const response = await csrfFetch(`/api/users/${userId}`);
   const data = await response.json();
-  console.log(data)
   if (response.ok) {
     dispatch(receiveUser({[data.user.id]: data.user}))
   }
@@ -29,7 +28,6 @@ export const fetchUser = (userId) => async (dispatch) => {
 export const fetchUserLiveActivity = (userId) => async (dispatch) => {
   const response = await csrfFetch(`/api/users/${userId}`);
   const data = await response.json();
-  console.log(data)
   if (response.ok) {
     dispatch(receiveUser({[data.user.id]: data.user}))
     dispatch(receiveActivity(data.activity))
@@ -43,8 +41,6 @@ export const updateUserActivity = (userId, activityId) => async (dispatch) => {
   })
   const data = await response.json();
   if (response.ok) {
-    console.log("THIS IS IN THE UPDATE USER ACTIVTY THUNK ACTION CREATOR")
-    console.log(data)
     dispatch(setCurrentUser(data.user))
 
   }

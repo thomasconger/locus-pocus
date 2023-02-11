@@ -26,9 +26,7 @@ const ActivityIndexItem = ({prompt, id}) => {
 
   const responsesForThisActivity = Object.values(responses).filter((response)=>{return response.activityId === id})
 
-  console.log(responsesForThisActivity ? responsesForThisActivity : "")
 
-  console.log(`responses for ${id}`, responsesForThisActivity)
 
   // Fetches activity and responses based on id, which is passed in as a prop
   useEffect(()=>{

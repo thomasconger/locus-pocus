@@ -30,8 +30,6 @@ function ProfileButton({ user }) {
   const logout = (e) => {
     e.preventDefault();
     dispatch(sessionActions.logout());
-    // return window.location.replace('/login')
-    console.log('logging out')
   };
 
   function copyLiveLink () {

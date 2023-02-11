@@ -28,17 +28,14 @@ const LiveForm = () => {
   // Web Sockets -- copied code
   useEffect(()=>{
 
-    console.log('params.id', params)
 
     // NEED A USER SUBSCRIPTION
     const subscription  = consumer.subscriptions.create(
       { channel: 'UserChannel', id: params.userId},
       {
         connected: () => {
-          console.log("Connected!")
         },
         received: user => {
-          console.log("/now-showing has received:", user)
           dispatch(receiveUser(user))
           setDisplay(true)
           dispatch(fetchUserLiveActivity(user.id))
@@ -57,7 +54,6 @@ const LiveForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(user.liveActivityId)
     dispatch(createResponse({
       body: choice,
       activity_id: user.liveActivityId
