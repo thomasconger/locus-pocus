@@ -54,7 +54,7 @@ function LoginFormPage() {
   return (
     <div className="login-wrapper">
       <h2 className="login-hero-text">Hello!</h2>
-      <p className="login-hero-subtext">Just want a demo? <button className="login-hero-demo" onClick={handleDemo} >Click here</button></p>
+      <p className="login-hero-subtext">Just want a demo? <button className="passive" onClick={handleDemo} >Click here</button></p>
       <form className="login-form" onSubmit={handleSubmit}>
         <label>
           Email

@@ -61,7 +61,6 @@ function BarChart({width, height, data}) {
       .attr("y", function(d) { return y(d.count); })
       .attr("width", x.bandwidth())
       .attr("height", function(d) {
-        console.log('d', d)
         return adjHeight - y(d.count); } )
       .attr("fill", "#69b3a2")
 

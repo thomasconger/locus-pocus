@@ -80,7 +80,7 @@ export const fetchActivities = ( userId ) => async (dispatch) => {
   return response;
 }
 
-// be mindful of fetch Activity vs fetch Activities. 
+// be mindful of fetch Activity vs fetch Activities.
 export const fetchActivity = (id) => async (dispatch) => {
   const response = await csrfFetch(`/api/activities/${id}`)
   const data = await response.json();
@@ -127,7 +127,6 @@ const activityReducer = (state = initialState, action) => {
       return {...state, ...action.payload} ;
     case REMOVE_ACTIVITY:
       const newState = {...state};
-      console.log('action payload dot id', action.payload)
       delete newState[action.payload]
       return {...newState};
     default:

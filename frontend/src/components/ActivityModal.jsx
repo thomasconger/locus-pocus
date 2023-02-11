@@ -58,7 +58,6 @@ export default function ActivityModal(props) {
     )).catch(async (res) => {
       let data;
       try {
-        console.log("in frontend response handler")
         // .clone() essentially allows you to read the response body twice
         data = await res.clone().json();
       } catch {
@@ -69,7 +68,9 @@ export default function ActivityModal(props) {
       else setErrors([res.statusText]);
     }).then(
       setSuccess(["Success!"])
-    );
+      ).then(
+        props.close(e)
+      );
   }
 
   const handleFormChange = (e, i) => {
@@ -98,7 +99,7 @@ export default function ActivityModal(props) {
   let enoughOptions;
   let displayAdd = true;
 
-    console.log('option count', optionCount)
+
     if (optionCount > 2) {
       enoughOptions = true;
     }
