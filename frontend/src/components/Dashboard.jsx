@@ -20,6 +20,7 @@ function Dashboard() {
   }))
 
   const [show, setShow] = useState(false);
+  const [alert, setAlert] = useState(false)
 
 
   const addModal = () => {
@@ -33,8 +34,15 @@ function Dashboard() {
   if (!sessionUser) return <Redirect to="/login" />;
 
   function copyLink (e) {
+
+
     const link = `https://locus-pocus.onrender.com/now-showing/${sessionUser.id}`
     navigator.clipboard.writeText(link)
+    setAlert(true)
+    setTimeout(() => {
+      setAlert(false)
+    }, 3000 )
+
   }
 
   return (
@@ -43,7 +51,7 @@ function Dashboard() {
         <div className="activity-toolbar">
           <div className="title-and-share">
             <h2 className="activity-index-title">My Workspace</h2>
-            <button className="passive" onClick={copyLink}> < IoPersonAdd /> Share</button>
+            <button className="passive" onClick={copyLink}> < IoPersonAdd /> { alert ? 'Copied to your clipboard!' : 'Share'}</button>
           </div>
           {/* { IoPersonAdd } */}
           <button onClick={ addModal } className="new-activity-button"> <IoAdd/> Create Activity</button>

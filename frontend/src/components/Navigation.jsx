@@ -33,7 +33,9 @@ function Navigation() {
         <NavLink  exact to="/">Locus Pocus</NavLink>
       </div>
       <ul className="navigation">
-        <button className="cta">Hire the developer!</button>
+        <a href="https://linkedin.com/in/thomasconger" target="_blank">
+          <button className="cta">Connect with the developer!</button>
+        </a>
         {sessionLinks}
       </ul>
     </nav>
