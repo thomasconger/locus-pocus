@@ -179,7 +179,7 @@ const ActivityShow = () => {
               <ul>
                 <li onClick={displayActivity}>Edit Activity</li>
                 <li onClick={displayResponses}>View Responses</li>
-                <li onClick={clearResponses}>Reset Responses</li>
+                <li onClick={handleClear}>Reset Responses</li>
                 <li onClick={handleDelete} className="attention">Delete Activity</li>
               </ul>
             </div>)}
