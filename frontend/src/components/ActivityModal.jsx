@@ -69,7 +69,9 @@ export default function ActivityModal(props) {
       else setErrors([res.statusText]);
     }).then(
       setSuccess(["Success!"])
-    );
+      ).then(
+        props.close(e)
+      );
   }
 
   const handleFormChange = (e, i) => {
