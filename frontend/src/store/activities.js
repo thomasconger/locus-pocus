@@ -1,5 +1,5 @@
 import csrfFetch from "./csrf";
-import { receiveResponses, clearResponses } from "./responses";
+import { receiveResponses, clearResponses, filterResponses } from "./responses";
 // action constants
 
 const RECEIVE_ACTIVITY = 'activity/receiveActivity'
@@ -86,7 +86,8 @@ export const fetchActivity = (id) => async (dispatch) => {
   const data = await response.json();
   if (response.ok) {
     dispatch(receiveActivity(data.activity))
-    dispatch(receiveResponses(data.responses))
+    const formatted = data.responses.reduce((a,v)=>({...a, [v.id]: v}),{});
+    dispatch(receiveResponses(formatted))
   }
   return response;
 }
@@ -108,7 +109,8 @@ export const resetResponses = (id) => async (dispatch) => {
   })
   const data = await response.json();
   if (response.ok) {
-    dispatch(clearResponses())
+    //
+    dispatch(filterResponses(id))
   }
   return response;
 }

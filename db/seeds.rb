@@ -46,9 +46,9 @@ ApplicationRecord.transaction do
     user_id: 1
   })
   Activity.create!({
-    prompt: "this is the third seed data",
+    prompt: "Pick a card! Any card!",
     style: "multiple-choice",
-    options: "{\"option1\":\"option a\",\"option2\":\"option b\", \"option3\":\"option a\"}",
+    options: "{\"option1\":\"Queen of Hearts\",\"option2\":\"Jack of Spades\", \"option3\":\"King of Diamonds\"}",
     user_id: 1
   })
 
@@ -60,25 +60,203 @@ ApplicationRecord.transaction do
   })
 
   Response.create({
-    body: "",
+    body: "Cheshire Cat",
     activity_id: 1
   })
   Response.create({
-    body: "",
+    body: "Cheshire Cat",
     activity_id: 1
   })
   Response.create({
-    body: "",
+    body: "Cheshire Cat",
     activity_id: 1
   })
   Response.create({
-    body: "",
+    body: "Mad Hatter",
     activity_id: 1
   })
   Response.create({
-    body: "",
+    body: "Mad Hatter",
     activity_id: 1
   })
+  Response.create({
+    body: "Wait for the door to grow",
+    activity_id: 2
+  })
+  Response.create({
+    body: "Wait for the door to grow",
+    activity_id: 2
+  })
+  Response.create({
+    body: "Wait for the door to grow",
+    activity_id: 2
+  })
+  Response.create({
+    body: "Wait for the door to grow",
+    activity_id: 2
+  })
+  Response.create({
+    body: "Wait for the door to grow",
+    activity_id: 2
+  })
+  Response.create({
+    body: "Change your perspective so the door gets bigger",
+    activity_id: 2
+  })
+  Response.create({
+    body: "With great effort",
+    activity_id: 2
+  })
+  Response.create({
+    body: "Drink the potion that says 'drink me",
+    activity_id: 2
+  })
+  Response.create({
+    body: "Drink the potion that says 'drink me",
+    activity_id: 2
+  })
+  Response.create({
+    body: "Drink the potion that says 'drink me",
+    activity_id: 2
+  })
+  Response.create({
+    body: "Drink the potion that says 'drink me",
+    activity_id: 2
+  })
+  Response.create({
+    body: "Drink the potion that says 'drink me",
+    activity_id: 2
+  })
+  Response.create({
+    body: "Queen of Hearts",
+    activity_id: 3
+  })
+  Response.create({
+    body: "Queen of Hearts",
+    activity_id: 3
+  })
+  Response.create({
+    body: "Queen of Hearts",
+    activity_id: 3
+  })
+  Response.create({
+    body: "Queen of Hearts",
+    activity_id: 3
+  })
+  Response.create({
+    body: "Queen of Hearts",
+    activity_id: 3
+  })
+  Response.create({
+    body: "Queen of Hearts",
+    activity_id: 3
+  })
+  Response.create({
+    body: "Queen of Hearts",
+    activity_id: 3
+  })
+  Response.create({
+    body: "Queen of Hearts",
+    activity_id: 3
+  })
+  Response.create({
+    body: "Queen of Hearts",
+    activity_id: 3
+  })
+  Response.create({
+    body: "Jack of Spades",
+    activity_id: 3
+  })
+  Response.create({
+    body: "Jack of Spades",
+    activity_id: 3
+  })
+  Response.create({
+    body: "Jack of Spades",
+    activity_id: 3
+  })
+  Response.create({
+    body: "Jack of Spades",
+    activity_id: 3
+  })
+  Response.create({
+    body: "Jack of Spades",
+    activity_id: 3
+  })
+  Response.create({
+    body: "Jack of Spades",
+    activity_id: 3
+  })
+  Response.create({
+    body: "Jack of Spades",
+    activity_id: 3
+  })
+  Response.create({
+    body: "King of Diamonds",
+    activity_id: 3
+  })
+  Response.create({
+    body: "King of Diamonds",
+    activity_id: 3
+  })
+  Response.create({
+    body: "King of Diamonds",
+    activity_id: 3
+  })
+  Response.create({
+    body: "King of Diamonds",
+    activity_id: 3
+  })
+  Response.create({
+    body: "King of Diamonds",
+    activity_id: 3
+  })
+  Response.create({
+    body: "King of Diamonds",
+    activity_id: 3
+  })
+  Response.create({
+    body: "King of Diamonds",
+    activity_id: 3
+  })
+  Response.create({
+    body: "King of Diamonds",
+    activity_id: 3
+  })
+  Response.create({
+    body: "King of Diamonds",
+    activity_id: 3
+  })
+  Response.create({
+    body: "King of Diamonds",
+    activity_id: 3
+  })
+  Response.create({
+    body: "King of Diamonds",
+    activity_id: 3
+  })
+  Response.create({
+    body: "King of Diamonds",
+    activity_id: 3
+  })
+  Response.create({
+    body: "King of Diamonds",
+    activity_id: 3
+  })
+  Response.create({
+    body: "King of Diamonds",
+    activity_id: 3
+  })
+  Response.create({
+    body: "King of Diamonds",
+    activity_id: 3
+  })
+  Response.create({
+    body: "King of Diamonds",
+    activity_id: 3
+  })
+
+
 
 
 

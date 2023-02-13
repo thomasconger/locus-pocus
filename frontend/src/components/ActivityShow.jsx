@@ -92,6 +92,7 @@ const ActivityShow = () => {
     },[ activity?.options ])
 
     useEffect(()=>{
+      dispatch(clearResponses())
       dispatch(fetchActivity(params.id));
       // dispatch(fetchResponses(params.id));
       return () => dispatch(clearResponses());
