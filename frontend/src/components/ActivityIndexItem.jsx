@@ -22,9 +22,7 @@ const ActivityIndexItem = ({prompt, id}) => {
   const responses = useSelector(state => state.responses)
   const [dropdown, setDropdown] = useState(false)
 
-
-
-  const responsesForThisActivity = Object.values(responses).filter((response)=>{return response.activityId === id})
+  const responsesForThisActivity = Object.values(responses).filter((response)=>{return response.activityId === id}).length
 
 
 
@@ -35,7 +33,7 @@ const ActivityIndexItem = ({prompt, id}) => {
 
 
   // Displays live icon or 'make live' button
-  let liveIcon
+  let liveIcon;
   if (user.liveActivityId == id) {
      liveIcon = <i className="fa-solid fa-tower-broadcast fa-1x"></i>
   } else {
@@ -64,7 +62,7 @@ const ActivityIndexItem = ({prompt, id}) => {
             <Link to={`./activity/${id}`}>{prompt}</Link>
           </div>
           <div className="activity-prompt-broadcast-wrapper">
-              <p>{responsesForThisActivity.length}</p>
+              <p>{responsesForThisActivity}</p>
           </div>
           <div>
             <button className="passive" onClick={e => setDropdown(!dropdown)}>

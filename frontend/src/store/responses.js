@@ -5,6 +5,7 @@ import csrfFetch from "./csrf"
 const RECEIVE_RESPONSE = 'responses/receiveResponse'
 const RECEIVE_RESPONSES = 'responses/receiveResponses'
 const CLEAR_RESPONSES = 'responses/clearResponses'
+const FILTER_RESPONSES = 'responses/filterResponses'
 
 // action creators
 
@@ -29,6 +30,13 @@ export const clearResponses = () => {
   }
 }
 
+export function filterResponses (activityId) {
+  return {
+    type: FILTER_RESPONSES,
+    payload: activityId
+  }
+}
+
 
 // thunk action creators
 
@@ -48,6 +56,8 @@ export const fetchResponses = (id) => async (dispatch) => {
   // this is using the activity id
   const response = await csrfFetch(`/api/responses/${id}`)
   const data = await response.json();
+  console.log('test')
+  console.log('data after fetch Responses', data)
   const formatted = data.reduce((a,v)=>({...a, [v.id]: v}),{});
   if (response.ok) {
     dispatch(receiveResponses(formatted))
@@ -84,6 +94,7 @@ export const updateResponse = (id, response) => async (dispatch) => {
 }
 
 
+
 // reducer
 
 const initialState = {}
@@ -96,6 +107,17 @@ const responseReducer = (state = initialState, action ) => {
       return {...state, ...action.payload};
     case CLEAR_RESPONSES:
       return {};
+    case FILTER_RESPONSES:
+      console.log('in filter responses');
+      console.log('action', action);
+      //
+      const filteredAsArray = Object.entries(state).filter(entry => entry[1].activityId !== action.payload)
+      console.log('filteredAsArray', filteredAsArray)
+      const filteredAsObject = filteredAsArray.reduce((acc,entry) => {
+        return { ...acc, [entry[1].id]: entry[1]}
+      }, {})
+      console.log('filteredAsObject', filteredAsObject)
+      return filteredAsObject
     default:
       return state;
   }
