@@ -110,6 +110,7 @@ button {
 
 button:hover {
 	background-color: #474747;
+	cursor: pointer;
 }
 
 button.cta {
@@ -139,6 +140,10 @@ button.close {
   width: 40px;
   height: 40px;
   border-radius: 50%;
+}
+
+.tiny-profile:hover {
+	cursor: pointer;
 }
 
 /* Text Affordances */
